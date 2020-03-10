@@ -1,26 +1,103 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import firebase from "./components/firebase";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Nav from "./components/Nav";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import LandingPage from "./components/LandingPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      storage: firebase.storage(),
+      auth: firebase.auth(),
+      user: null,
+      userImages: [],
+      userUploadedImagesToDisplay: null
+    };
+  }
+
+  userInfo = user => {
+    console.log(user)
+    this.setState({
+      user
+    }, () => {
+    const userImages = [...this.state.userImages];
+
+    this.state.storage
+      .ref()
+      .child(`${this.state.user.uid}-images`)
+      .listAll()
+      .then(res => {
+        res.items.map(item => {
+          item.getDownloadURL().then(url => {
+            userImages.push(url);
+
+            this.setState({ userImages });
+          });
+        });
+      });
+    })
+  }
+
+  userUploadedImageToDisplay = url => {
+    const userImages = [...this.state.userImages];
+
+    userImages.unshift(url);
+
+    this.setState({ userImages });
+  };
+
+  deleteImage = e => {
+    const userImages = [...this.state.userImages];
+
+    const userDeletedImage = e.target.parentNode.childNodes[0].currentSrc;
+
+    const filteredUserImages = userImages.filter(image =>
+      image !== userDeletedImage);
+
+    this.setState({ userImages: filteredUserImages });
+
+    this.state.storage.refFromURL(userDeletedImage).delete();
+  };
+
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Nav />
+          
+          {this.state.user 
+          ? 
+            <div>
+              <Header
+                user={this.state.user}
+                userImages={this.state.userImages}
+                userUploadedImageToDisplay={this.userUploadedImageToDisplay}
+              />
+
+              <Main
+                userImages={this.state.userImages}
+                deleteImage={this.deleteImage}
+              />
+            </div>
+          : 
+            <LandingPage userInfo={this.userInfo} /> }
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
+
+
+
+
+
+// add bio section that users can change
+
+// add personal info section e.g. email and phone number
