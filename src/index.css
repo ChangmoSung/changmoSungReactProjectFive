@@ -18,7 +18,6 @@ img {
 }
 
 .wrapper {
-  width: 90%;
   max-width: 100rem;
   margin: 0 auto;
 }
@@ -63,14 +62,45 @@ header {
 }
 
 .profileImage {
+  position: relative;
   width: 30%;
   min-width: 20rem;
-  background: none;
-  border: none;
 }
 
 .profileImage img {
   border-radius: 50%;
+}
+
+.profileImage label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  padding-top: 2.5%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  background-color: pink;
+  border-radius: 3rem;
+  cursor: pointer;
+}
+
+.profileImage:hover label,
+.profileImage:focus label {
+  background: skyblue;
+  outline: 1px dotted black;
+}
+
+.profileImage input {
+  font-family: 'Simonetta', ;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .userInfo {
@@ -156,7 +186,7 @@ header {
 .galleryImage {
   position: relative;
   width: calc(100% / 3 - 1.5rem);
-  max-height: 25rem;
+  min-height: 25rem;
   border-radius: 2rem;
   overflow: hidden;
   background: skyblue;
@@ -180,6 +210,9 @@ header {
 }
 
 .galleryImage img {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 89%;
   transition: all 0.3s;
 }
@@ -210,3 +243,37 @@ header {
 /* ------------------- */
 /* ------gallery------ */
 /* ------------------- */
+
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 93vh;
+}
+
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.signInForm label {
+  font-size: 1.8rem;
+}
+
+.signInForm input {
+  margin-bottom: 5rem;
+  height: 3.5rem;
+  font-size: 1.8rem; 
+}
+
+.landingPage button {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* ------------------------ */
+/* ------landing page------ */
+/* ------------------------ */

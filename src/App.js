@@ -19,6 +19,15 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.state.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+        this.userInfo(user);
+      }
+    });
+  }
+
   userInfo = user => {
     console.log(user)
     this.setState({
@@ -62,7 +71,6 @@ class App extends Component {
 
     this.state.storage.refFromURL(userDeletedImage).delete();
   };
-
 
   render() {
     return (

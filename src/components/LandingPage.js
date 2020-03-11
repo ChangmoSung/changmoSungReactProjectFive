@@ -6,6 +6,7 @@ class LandingPage extends Component {
         super();
         this.state = {
             user: null,
+            signUpButtonClicked: false,
             auth: firebase.auth(),
             signInEmail: React.createRef(),
             signInPassword: React.createRef(),
@@ -53,34 +54,51 @@ class LandingPage extends Component {
 
         this.state.auth.onAuthStateChanged(user => {
             this.setState({
-                user
+                user,
+                signUpButtonClicked: !this.state.signUpButtonClicked,
             })
+        })
+    }
+
+    // -----------------------------//
+
+    signUpPopUp = () => {
+        this.setState({
+            signUpButtonClicked: !this.state.signUpButtonClicked,
         })
     }
 
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.signIn}>
-                    <label htmlFor='signInEmail'>email</label>
-                    <input ref={this.state.signInEmail} id='signInEmail' type='signInEmail'></input>
+            <div className='landingPage'>
+                <form className='signInForm' onSubmit={this.signIn}>
+                    <label htmlFor='signInEmail'>Email</label>
+                    <input ref={this.state.signInEmail} id='signInEmail' type='email'></input>
 
-                    <label htmlFor='signInPassword'>password</label>
-                    <input ref={this.state.signInPassword} id='signInPassword' type='signInPassword'></input>
+                    <label htmlFor='signInPassword'>Password</label>
+                    <input ref={this.state.signInPassword} id='signInPassword' type='password'></input>
 
-                    <button>login</button>
+                    <button>Login</button>
                 </form>
 
-                <form onSubmit={this.signUp}>
-                    <label htmlFor='signUpEmail'>email</label>
-                    <input ref={this.state.signUpEmail} id='signUpEmail' type='signUpEmail'></input>
 
-                    <label htmlFor='signUpPassword'>password</label>
-                    <input ref={this.state.signUpPassword} id='signUpPassword' type='signUpPassword'></input>
+                {this.state.signUpButtonClicked
+                ? 
+                    <form onSubmit={this.signUp}>
+                        <label htmlFor='signUpEmail'>Email</label>
+                        <input ref={this.state.signUpEmail} id='signUpEmail' type='email'></input>
 
-                    <button>sign up</button>
-                </form>
+                        <label htmlFor='signUpPassword'>Password</label>
+                        <input ref={this.state.signUpPassword} id='signUpPassword' type='password'></input>
+
+                        <button>Sign up</button>
+
+                        <span onClick={this.signUpPopUp}>X</span>
+                    </form>
+                : null}
+                
+                {!this.state.signUpButtonClicked ? <button onClick={this.signUpPopUp}>Sign up</button> : null}
             </div>
         );
     }

@@ -11,6 +11,10 @@ class Header extends Component {
         };
     }
 
+    uploadProfileImage = e => {
+        console.log(e)
+    }
+
     uploadImage = e => {
         const imageToUpload = e.target.files[0];
 
@@ -24,9 +28,7 @@ class Header extends Component {
             "state_changed",
             snapshot => {
                 //progress
-                const progress = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 this.setState({ progress });
             },
             error => {
@@ -49,17 +51,20 @@ class Header extends Component {
         return (
             <header>
                 <div className="wrapper headerFlexContainer">
-                    <button className="profileImage">
+                    <div className="profileImage">
                         <img src="https://firebasestorage.googleapis.com/v0/b/project-five-97681.appspot.com/o/Z6fwRPBHhyVDwn8eFKzGX0eUQk13-favourite-images%2FJRr5JCPzDzVRYx1OPeUl?alt=media&token=72dacc8e-57dc-40f5-ba10-2249c4e15244"></img>
-                    </button>
+
+                        <label htmlFor='profileImageUpload'>profile</label>
+                        <input id='profileImageUpload' type='file' onChange={this.uploadProfileImage}></input>
+                    </div>
 
                     <div className="userInfo">
-                        <h1>{this.props.user.displayName}</h1>
+                        <h1>{this.props.user.email}</h1>
 
                         <p>{this.props.userImages.length} posts</p>
 
                         <label htmlFor='fileUpload'>UPLOAD</label>
-                        <input type="file" id='fileUpload' onChange={this.uploadImage}></input>
+                        <input id='fileUpload' type="file" onChange={this.uploadImage}></input>
 
                         <div className="progressBar">
                             <span style={{ width: `${this.state.progress}%` }}></span>
