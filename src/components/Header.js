@@ -7,28 +7,45 @@ class Header extends Component {
         this.state = {
             storage: firebase.storage(),
             database: firebase.firestore(),
-            progress: 0
+            progress: 0,
+            profileImage: '',
+            galleryImage: '',
         };
     }
 
     uploadProfileImage = e => {
-        console.log(e)
+        this.setState({
+            profileImage: e.target.files[0],
+        }, () => this.upload(this.state.profileImage))
     }
 
-    uploadImage = e => {
-        const imageToUpload = e.target.files[0];
+    uploadGalleryImage = e => {
+        this.setState({
+            galleryImage: e.target.files[0],
+        }, () => this.upload(this.state.galleryImage))
+    }
 
+    upload = imageToUpload => {
         const uniqueKey = this.state.database.collection("uniqueKey").doc().id;
 
-        const uploadTask = this.state.storage
-            .ref(`${this.props.user.uid}-images/${uniqueKey}`)
-            .put(imageToUpload);
+        let uploadTask;
+        
+        if(this.state.profileImage) {
+            uploadTask = this.state.storage
+                .ref(`${this.props.user.uid}-profileImage/${uniqueKey}`)
+                .put(imageToUpload);
+        } else {
+            uploadTask = this.state.storage
+                .ref(`${this.props.user.uid}-galleryImages/${uniqueKey}`)
+                .put(imageToUpload);
+        }
 
         uploadTask.on(
             "state_changed",
             snapshot => {
                 //progress
                 const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                
                 this.setState({ progress });
             },
             error => {
@@ -37,7 +54,7 @@ class Header extends Component {
             () => {
                 //complete
                 this.state.storage
-                    .ref(`${this.props.user.uid}-images`)
+                    .ref(`${this.props.user.uid}-galleryImages`)
                     .child(uniqueKey)
                     .getDownloadURL()
                     .then(url => {
@@ -45,6 +62,11 @@ class Header extends Component {
                     });
             }
         );
+
+        this.setState({
+            profileImage: '',
+            galleryImage: '',
+        })
     };
 
     render() {
@@ -64,7 +86,7 @@ class Header extends Component {
                         <p>{this.props.userImages.length} posts</p>
 
                         <label htmlFor='fileUpload'>UPLOAD</label>
-                        <input id='fileUpload' type="file" onChange={this.uploadImage}></input>
+                        <input id='fileUpload' type="file" onChange={this.uploadGalleryImage}></input>
 
                         <div className="progressBar">
                             <span style={{ width: `${this.state.progress}%` }}></span>

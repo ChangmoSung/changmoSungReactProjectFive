@@ -37,7 +37,7 @@ class App extends Component {
 
     this.state.storage
       .ref()
-      .child(`${this.state.user.uid}-images`)
+      .child(`${this.state.user.uid}-galleryImages`)
       .listAll()
       .then(res => {
         res.items.map(item => {
