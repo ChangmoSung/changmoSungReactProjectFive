@@ -44,10 +44,9 @@ class LandingPage extends Component {
         
         const email = this.state.signUpEmail.current.value;
         const password = this.state.signUpPassword.current.value;
-        console.log(email, password)
 
         this.state.auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
-            var errorMessage = error.message;
+            const errorMessage = error.message;
 
             alert(errorMessage)
         });
