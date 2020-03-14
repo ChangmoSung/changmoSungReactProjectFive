@@ -8,26 +8,41 @@ class Header extends Component {
             storage: firebase.storage(),
             database: firebase.firestore(),
             progress: 0,
-            profileImage: '',
-            galleryImage: '',
-            galleryVideo: '',
+            upload: false,
+            profileImage: null,
+            profileVideo: null,
+            galleryImage: null,
+            galleryVideo: null,
             profileImageUploaded: false,
+            profileVideoUploaded: false,
             galleryImageUploaded: false,
+            galleryVideoUploaded: false,
         };
     }
 
     uploadProfileImage = e => {
-        this.setState({
-            profileImageUploaded: true,
-            profileImage: e.target.files[0],
-        }, () => this.upload(this.state.profileImage))
+        if (e.target.files[0].type.includes('video')) {
+            this.setState({
+                profileVideoUploaded: true,
+                profileVideo: e.target.files[0],
+            }, () => this.upload(this.state.profileVideo))
+        } else {
+            this.setState({
+                profileImageUploaded: true,
+                profileImage: e.target.files[0],
+            }, () => this.upload(this.state.profileImage))
+        }
     }
 
     uploadGallery = e => {
+        this.setState({
+            upload: true,
+        })
         if (e.target.files[0].type.includes('video')) {
             this.setState({
+                galleryVideoUploaded: true,
                 galleryVideo: e.target.files[0],
-            }, () => this.uploadVideo(this.state.galleryVideo))
+            }, () => this.upload(this.state.galleryVideo))
         } else {
             this.setState({
                 galleryImageUploaded: true,
@@ -41,7 +56,17 @@ class Header extends Component {
 
         let uploadTask;
         
-        uploadTask = this.state.storage.ref(this.state.profileImageUploaded ? `${this.props.user.uid}-profileImage/profileImage` : `${this.props.user.uid}-galleryImages/${uniqueId}`).put(imageToUpload)
+        uploadTask = this.state.storage
+            .ref(this.state.upload 
+                ? this.state.galleryImageUploaded
+                    ? `${this.props.user.uid}-galleryImages/${uniqueId}`
+                    : `${this.props.user.uid}-galleryVideos/${uniqueId}`
+
+                : this.state.profileImageUploaded
+                    ? `${this.props.user.uid}-profileImage/profileImage`
+                    : `${this.props.user.uid}-profileVideo/profileVideo`
+                )
+            .put(imageToUpload)
 
         uploadTask.on(
             "state_changed",
@@ -58,28 +83,44 @@ class Header extends Component {
             () => {
                 //complete
                 this.state.storage
-                    .ref(this.state.profileImageUploaded ? `${this.props.user.uid}-profileImage` : `${this.props.user.uid}-galleryImages`)
-                    .child(this.state.profileImageUploaded ? 'profileImage' : uniqueId)
+                    .ref(this.state.upload
+                        ? this.state.galleryImageUploaded
+                            ? `${this.props.user.uid}-galleryImages`
+                            : `${this.props.user.uid}-galleryVideos`
+                        : this.state.profileImageUploaded
+                            ? `${this.props.user.uid}-profileImage`
+                            : `${this.props.user.uid}-profileVideo`
+                        )
+                    .child(this.state.upload
+                        ? this.state.galleryImageUploaded
+                            ? `${uniqueId}`
+                            :  `${uniqueId}`
+                        : this.state.profileImageUploaded
+                            ? 'profileImage'
+                            : 'profileVideo'
+                        )
                     .getDownloadURL()
                     .then(url => {
-                        if(this.state.profileImageUploaded) {
+                        if(this.state.profileImageUploaded || this.state.profileVideoUploaded) {
                             this.setState({
-                                profileImage: url,
+                                profileImage: this.state.profileImageUploaded ? url : null,
                                 profileImageUploaded: false,
+                                profileVideo: this.state.profileVideoUploaded ? url : null,
                             })
                         } else {
-                            this.props.userUploadedImageToDisplay(url);
-                            this.setState({ galleryImageUploaded: false })
+                            if(this.state.galleryImageUploaded) {
+                                this.props.userUploadedImageToDisplay(url);
+                                this.setState({ galleryImageUploaded: false })
+                            } else {
+                                this.props.userUploadedVideoToDisplay(url);
+                                this.setState({ galleryVideoUploaded: false })
+                            }
                         }
                     })
             }
         );
     };
 
-    uploadVideo = videoToUpload => {
-        console.log(videoToUpload)
-
-    }
 
     render() {
         return (

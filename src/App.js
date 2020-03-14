@@ -17,8 +17,9 @@ class App extends Component {
       auth: firebase.auth(),
       user: null,
       userImages: [],
+      userVideos: [],
       profileImage: null,
-      userUploadedImagesToDisplay: null,
+      profileVideo: null,
     };
   }
 
@@ -27,6 +28,8 @@ class App extends Component {
       if (user) {
         this.setState({ user }, () => {
           const userImages = [...this.state.userImages];
+
+          const userVideos = [...this.state.userVideos];
 
           this.state.storage
             .ref()
@@ -44,12 +47,39 @@ class App extends Component {
 
           this.state.storage
             .ref()
+            .child(`${this.state.user.uid}-galleryVideos`)
+            .listAll()
+            .then(res => {
+              res.items.map(item => {
+                item.getDownloadURL().then(url => {
+                  userVideos.push(url);
+
+                  this.setState({ userVideos });
+                });
+              });
+            });
+
+          this.state.storage
+            .ref()
             .child(`${this.state.user.uid}-profileImage`)
             .listAll()
             .then(res => {
               res.items.map(item => {
                 item.getDownloadURL().then(url => {
   
+                  this.setState({ profileImage: url });
+                });
+              });
+            });
+
+          this.state.storage
+            .ref()
+            .child(`${this.state.user.uid}-profileVideo`)
+            .listAll()
+            .then(res => {
+              res.items.map(item => {
+                item.getDownloadURL().then(url => {
+
                   this.setState({ profileImage: url });
                 });
               });
@@ -66,6 +96,15 @@ class App extends Component {
 
     this.setState({ userImages });
   };
+
+  userUploadedVideoToDisplay = url => {
+    console.log(url)
+    const userVideos = [...this.state.userVideos];
+
+    userVideos.unshift(url);
+
+    this.setState({ userVideos });
+  }
 
   deleteImage = e => {
     const confirm = window.confirm('are you sure?');
@@ -84,12 +123,29 @@ class App extends Component {
     }
   };
 
+  deleteVideo = e => {
+    const confirm = window.confirm('are you sure?');
+
+    if (confirm) {
+      const userVideos = [...this.state.userVideos];
+
+      const userDeletedVideo = e.target.parentNode.childNodes[0].currentSrc;
+
+      const filteredUserVideos = userVideos.filter(video =>
+        video !== userDeletedVideo);
+
+      this.setState({ userImages: filteredUserVideos });
+
+      this.state.storage.refFromURL(userDeletedVideo).delete();
+    }
+  };
+
   render() {
     return (
       <Router>
         <div>
           <Nav />
-          <Route path='/changmoSungReactProjectFive' exact>
+          <Route path='/changmoSungReactProjectFive/'>
             {this.state.user 
             ? 
               <div>
@@ -98,11 +154,14 @@ class App extends Component {
                   userImages={this.state.userImages}
                   profileImage={this.state.profileImage}
                   userUploadedImageToDisplay={this.userUploadedImageToDisplay}
+                  userUploadedVideoToDisplay={this.userUploadedVideoToDisplay}
                 />
-
+                
                 <Main
                   userImages={this.state.userImages}
+                  userVideos={this.state.userVideos}
                   deleteImage={this.deleteImage}
+                  deleteVideo={this.deleteVideo}
                 />
               </div>
             : 
@@ -117,11 +176,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-// add bio section that users can change
-
-// add personal info section e.g. email and phone number
