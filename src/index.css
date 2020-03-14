@@ -68,8 +68,8 @@ header {
 
 .profileImage {
   position: relative;
-  width: 30%;
-  min-width: 20rem;
+  width: 22rem;
+  height: 22rem;
 }
 
 .profileImage img {

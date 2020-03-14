@@ -6,12 +6,12 @@ class Bio extends Component {
     constructor() {
         super();
         this.state = {
+            auth: firebase.auth(),
             database: firebase.firestore(),
+            user: null,
+            userBios: [],
             title: React.createRef(),
             bio: React.createRef(),
-            userBios: [],
-            auth: firebase.auth(),
-            user: null,
         }
     }
 
