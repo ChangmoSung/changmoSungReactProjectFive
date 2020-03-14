@@ -8,8 +8,8 @@ class Header extends Component {
             storage: firebase.storage(),
             database: firebase.firestore(),
             progress: 0,
-            profileImage: '',
-            galleryImage: '',
+            profileImage: null,
+            galleryImage: null,
         };
     }
 
@@ -31,10 +31,13 @@ class Header extends Component {
         let uploadTask;
         
         if(this.state.profileImage) {
+            console.log('profile')
             uploadTask = this.state.storage
-                .ref(`${this.props.user.uid}-profileImage/${uniqueId}`)
+                .ref(`${this.props.user.uid}-profileImage/profileImage`)
                 .put(imageToUpload);
-        } else {
+        } else if(this.state.galleryImage) {
+            console.log('gallery')
+
             uploadTask = this.state.storage
                 .ref(`${this.props.user.uid}-galleryImages/${uniqueId}`)
                 .put(imageToUpload);
@@ -54,20 +57,32 @@ class Header extends Component {
             },
             () => {
                 //complete
-                this.state.storage
-                    .ref(`${this.props.user.uid}-galleryImages`)
-                    .child(uniqueId)
-                    .getDownloadURL()
-                    .then(url => {
-                        this.props.userUploadedImageToDisplay(url);
-                    });
+                if(this.state.profileImage) {
+                    console.log('profile')
+
+                    this.state.storage
+                        .ref(`${this.props.user.uid}-profileImage`)
+                        .child('profileImage')
+                        .getDownloadURL()
+                        .then(url => {
+                            this.setState({ profileImage: url }, () => console.log(this.state.profileImage))
+                        });
+                } else if(this.state.galleryImage) {
+                    console.log('gallery')
+                    this.state.storage
+                        .ref(`${this.props.user.uid}-galleryImages`)
+                        .child(uniqueId)
+                        .getDownloadURL()
+                        .then(url => {
+                            this.props.userUploadedImageToDisplay(url);
+                        });
+                }
+                this.setState({
+                    profileImage: '',
+                    galleryImage: '',
+                }, () => console.log(this.state.profileImage))
             }
         );
-
-        this.setState({
-            profileImage: '',
-            galleryImage: '',
-        })
     };
 
     render() {
@@ -75,10 +90,10 @@ class Header extends Component {
             <header>
                 <div className="wrapper headerFlexContainer">
                     <div className="profileImage">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/project-five-97681.appspot.com/o/Z6fwRPBHhyVDwn8eFKzGX0eUQk13-favourite-images%2FJRr5JCPzDzVRYx1OPeUl?alt=media&token=72dacc8e-57dc-40f5-ba10-2249c4e15244" alt='profile'></img>
+                        <img src={this.state.profileImage} alt='profile'></img>
 
-                        <label htmlFor='profileImageUpload'>profile</label>
-                        <input id='profileImageUpload' type='file' onChange={this.uploadProfileImage}></input>
+                        <label htmlFor='userProfileImage'>profile</label>
+                        <input id='userProfileImage' type='file' onChange={this.uploadProfileImage}></input>
                     </div>
 
                     <div className="userInfo">
@@ -86,8 +101,8 @@ class Header extends Component {
 
                         <p>{this.props.userImages.length} posts</p>
 
-                        <label htmlFor='fileUpload'>UPLOAD</label>
-                        <input id='fileUpload' type="file" onChange={this.uploadGalleryImage}></input>
+                        <label htmlFor='userGalleryImage'>UPLOAD</label>
+                        <input id='userGalleryImage' type="file" onChange={this.uploadGalleryImage}></input>
 
                         <div className="progressBar">
                             <span style={{ width: `${this.state.progress}%` }}></span>
