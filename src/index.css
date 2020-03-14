@@ -173,7 +173,7 @@ header {
 
 .gallery {
   min-height: 61vh;
-  padding-bottom: 5rem;
+  padding: 5rem 0;
   background: rgb(245, 245, 245);
 }
 

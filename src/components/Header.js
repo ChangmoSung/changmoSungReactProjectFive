@@ -10,17 +10,21 @@ class Header extends Component {
             progress: 0,
             profileImage: '',
             galleryImage: '',
+            profileImageUploaded: false,
+            galleryImageUploaded: false,
         };
     }
 
     uploadProfileImage = e => {
         this.setState({
+            profileImageUploaded: true,
             profileImage: e.target.files[0],
         }, () => this.upload(this.state.profileImage))
     }
 
     uploadGalleryImage = e => {
         this.setState({
+            galleryImageUploaded: true,
             galleryImage: e.target.files[0],
         }, () => this.upload(this.state.galleryImage))
     }
@@ -30,9 +34,9 @@ class Header extends Component {
 
         let uploadTask;
         
-        if(this.state.profileImage) {
+        if(this.state.profileImageUploaded) {
             uploadTask = this.state.storage
-                .ref(`${this.props.user.uid}-profileImage/${uniqueId}`)
+                .ref(`${this.props.user.uid}-profileImage/profileImage`)
                 .put(imageToUpload);
         } else {
             uploadTask = this.state.storage
@@ -54,20 +58,29 @@ class Header extends Component {
             },
             () => {
                 //complete
-                this.state.storage
-                    .ref(`${this.props.user.uid}-galleryImages`)
-                    .child(uniqueId)
-                    .getDownloadURL()
-                    .then(url => {
-                        this.props.userUploadedImageToDisplay(url);
-                    });
+                if(this.state.profileImageUploaded) {
+                    this.state.storage
+                        .ref(`${this.props.user.uid}-profileImage`)
+                        .child('profileImage')
+                        .getDownloadURL()
+                        .then(url => {
+                            this.setState({ 
+                                profileImage: url,
+                                profileImageUploaded: false,
+                             })
+                        });
+                } else {
+                    this.state.storage
+                        .ref(`${this.props.user.uid}-galleryImages`)
+                        .child(uniqueId)
+                        .getDownloadURL()
+                        .then(url => {
+                            this.props.userUploadedImageToDisplay(url);
+                            this.setState({ galleryImageUploaded: false })
+                        });
+                }
             }
         );
-
-        this.setState({
-            profileImage: '',
-            galleryImage: '',
-        })
     };
 
     render() {
@@ -75,7 +88,7 @@ class Header extends Component {
             <header>
                 <div className="wrapper headerFlexContainer">
                     <div className="profileImage">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/project-five-97681.appspot.com/o/Z6fwRPBHhyVDwn8eFKzGX0eUQk13-favourite-images%2FJRr5JCPzDzVRYx1OPeUl?alt=media&token=72dacc8e-57dc-40f5-ba10-2249c4e15244" alt='profile'></img>
+                        <img src={this.state.profileImage ? this.state.profileImage : this.props.profileImage} alt='profile'></img>
 
                         <label htmlFor='profileImageUpload'>profile</label>
                         <input id='profileImageUpload' type='file' onChange={this.uploadProfileImage}></input>
