@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
+import Bio from "./Bio";
 
 class Main extends Component {
   constructor() {
@@ -16,11 +17,12 @@ class Main extends Component {
   render() {
     return (
       <main className="gallery">
+        <div className='links'>
+          <Link to="/changmoSungReactProjectFive/">image</Link>
+          <Link to="/changmoSungReactProjectFive/video">video</Link>
+          <Link to='/changmoSungReactProjectFive/bio'>Go to bio</Link>
+        </div>
         <div className="wrapper">
-          <div>
-            <Link to="/changmoSungReactProjectFive/">image</Link>
-            <Link to="/changmoSungReactProjectFive/video">video</Link>
-          </div>
 
           <Route path="/changmoSungReactProjectFive/" exact>
             {this.props.userImages.map((image, i) => {
@@ -55,6 +57,9 @@ class Main extends Component {
               );
             })}
           </Route>
+
+          <Route path="/changmoSungReactProjectFive/bio" component={Bio} />
+
         </div>
       </main>
     );

@@ -24,35 +24,9 @@ video {
 
 .wrapper {
   max-width: 100rem;
+  width: 96.5%;
   margin: 0 auto;
 }
-
-nav {
-  height: 6vh;
-  background: white;
-}
-
-nav .wrapper {
-  display: flex;
-  justify-content: space-between;
-  height: 6vh;
-}
-
-.navLogo {
-  width: 30%;
-  max-width: 25rem;
-}
-
-.setting {
-  border: none;
-  background: skyblue;
-  color: white;
-  width: 15%;
-}
-
-/* ------------------------ */
-/* --------nav------------- */
-/* ------------------------ */
 
 header {
   background: rgb(245, 245, 245);
@@ -90,6 +64,7 @@ header {
   background-color: pink;
   border-radius: 3rem;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .profileImage:hover label,
@@ -137,12 +112,12 @@ header {
   border-radius: 3rem;
   display: inline-block;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .userInfo label:hover,
 .userInfo label:focus {
-  background: yellow;
+  background: pink;
   outline: 1px dotted black;
 }
     
@@ -170,6 +145,29 @@ header {
   transition: width 0.3s;
 }
 
+.signOut {
+  text-decoration: none;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 18rem;
+  height: 4rem;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  background-color: pink;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.signOut:hover,
+.signOut:focus {
+  background: skyblue;
+  outline: 1px dotted black;
+}
 
 /* ------------------------ */
 /* ---------header--------- */
@@ -177,8 +175,7 @@ header {
 
 
 .gallery {
-  min-height: 61vh;
-  padding: 5rem 0;
+  min-height:67vh;
   background: rgb(245, 245, 245);
 }
 
@@ -186,6 +183,25 @@ header {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+}
+
+.links {
+  width: 100%;
+  max-width: 100rem;
+  height: 4vh;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto 2rem;
+  font-size: 2rem;
+}
+
+.links a {
+  text-decoration: none;
+  background: skyblue;
+  color: white;
+  width: 20%;
+  text-align: center;
+  padding-top: 0.8rem;
 }
 
 .galleryImage {
@@ -240,7 +256,6 @@ header {
   text-transform: uppercase;
   color: white;
   border: none;
-  border-radius: 1.5rem;
   background: pink;
   font-size: 1.8rem;
 }
@@ -284,8 +299,8 @@ header {
 /* ------------------------ */
 
 .bioSection {
-  width: 85%;
   margin: 0 auto;
+  width: 100%;
 }
 
 .bioContainer {
@@ -296,34 +311,38 @@ header {
 
 .bioForm {
   height: 35vh;
+  width: 60%;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .bioForm label {
   font-size: 3rem;
-  margin-top: 3.5rem;
+  margin: 2rem 0;
 }
 
 .bioForm input {
-  height: 3rem;
-  font-size: 1.6rem;
+  height: 3.5rem;
+  font-size: 1.8rem;
 }
 
 .bioForm button {
-  width: 35%;
+  width: 15rem;
   height: 3rem;
   margin: 3rem auto 0;
 }
 
 .bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: calc(100% / 2 - 1.5rem);
-  min-height: 25rem;
+  min-height: 27rem;
   margin-bottom: 3rem;
   padding: 1.5rem;
   border-radius: 2rem;
-  background: skyblue;
-  color: white;
+  border: 2px solid skyblue;
 }
 
 .bio h3 {
@@ -333,4 +352,10 @@ header {
 
 .bio p {
   font-size: 2rem;
+  line-height: 2.7rem;
+}
+
+.bio button {
+  width: 10rem;
+  height: 3rem;
 }

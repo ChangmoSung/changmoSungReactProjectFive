@@ -34,8 +34,6 @@ class Nav extends Component {
                     </div>
 
                     <Link to='/changmoSungReactProjectFive/'>Go back home</Link>
-
-                    <Link to='/changmoSungReactProjectFive/bio'>Go to bio</Link>
                     
                     <button onClick={this.signOut} className="signOut">sign out</button>
                 </div>
