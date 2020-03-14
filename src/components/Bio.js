@@ -60,17 +60,21 @@ class Bio extends Component {
     }
 
     deleteBio = (e) => {
-        const uniqueId = e.target.parentNode.id;
+        const confirm = window.confirm('are you sure?');
 
-        this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
-            const userBios = [...this.state.userBios];
-
-            const filteredBios = userBios.filter(bio => bio.id !== uniqueId);
-
-            this.setState({ userBios: filteredBios });
-        })
-
-        this.state.database.collection(this.state.user.uid).doc(uniqueId).delete();
+        if(confirm) {
+            const uniqueId = e.target.parentNode.id;
+    
+            this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
+                const userBios = [...this.state.userBios];
+    
+                const filteredBios = userBios.filter(bio => bio.id !== uniqueId);
+    
+                this.setState({ userBios: filteredBios });
+            })
+    
+            this.state.database.collection(this.state.user.uid).doc(uniqueId).delete();
+        }
     }
 
     render() { 
