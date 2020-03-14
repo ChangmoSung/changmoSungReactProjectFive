@@ -14,20 +14,20 @@ class Main extends Component {
     };
 
     render() {
-        console.log(this.props.userVideos)
         return (
             <main className="gallery">
                 <div className="wrapper">
                     <div>
-                        <Link to='/changmoSungReactProjectFive/' exact>image</Link> 
-                        <Link to='/changmoSungReactProjectFive/videos' exact>video</Link>
+                        <Link to='/changmoSungReactProjectFive/' >image</Link> 
+                        <Link to='/changmoSungReactProjectFive/video' >video</Link>
                     </div>
 
-                    <Route path='/changmoSungReactProjectFive/'>
+                    <Route path='/changmoSungReactProjectFive/' exact>
                         {this.props.userImages.map((image, i) => {
                             return (
                                 <div key={i} className="galleryImage" tabIndex='0'>
                                     <img src={image} alt='user uploaded' onClick={this.enlargeImage}></img>
+
                                     <button onClick={this.props.deleteImage}>delete</button>
                                 </div>
                             );
@@ -35,11 +35,12 @@ class Main extends Component {
                     </Route>
 
                     {/* fix deleting video functionality */}
-                    <Route path='/changmoSungReactProjectFive/videos'>
+                    <Route path='/changmoSungReactProjectFive/video' exact>
                         {this.props.userVideos.map((video, i) => {
                             return (
                                 <div key={i} className="galleryImage" tabIndex='0'>
                                     <video src={video} alt='user uploaded' controls='controls' onClick={this.enlargeImage}></video>
+
                                     <button onClick={this.props.deleteVideo}>delete</button>
                                 </div>
                             );

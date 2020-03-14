@@ -145,7 +145,8 @@ class App extends Component {
       <Router>
         <div>
           <Nav />
-          <Route path='/changmoSungReactProjectFive/'>
+
+          <Route path='/changmoSungReactProjectFive/' >
             {this.state.user 
             ? 
               <div>
@@ -164,11 +165,11 @@ class App extends Component {
                   deleteVideo={this.deleteVideo}
                 />
               </div>
-            : 
-              <LandingPage userInfo={this.userInfo} /> }
+            :
+            <LandingPage userInfo={this.userInfo} /> }
           </Route>
 
-          <Route path='/changmoSungReactProjectFive/bio' render={() => <Bio ></Bio>} />
+          <Route path='/changmoSungReactProjectFive/bio' component={Bio} />
         </div>
       </Router>
     );

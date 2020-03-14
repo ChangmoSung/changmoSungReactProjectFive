@@ -59,8 +59,6 @@ class LandingPage extends Component {
         })
     }
 
-    // -----------------------------//
-
     signUpPopUp = () => {
         this.setState({
             signUpButtonClicked: !this.state.signUpButtonClicked,
