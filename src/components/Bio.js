@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from "./firebase";
 
 
@@ -11,27 +10,67 @@ class Bio extends Component {
             title: React.createRef(),
             bio: React.createRef(),
             userBios: [],
-            bioIds: [],
+            auth: firebase.auth(),
+            user: null,
         }
+    }
+
+    componentDidMount() {
+        this.state.auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ 
+                    user 
+                }, () => {
+                    this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
+                        const userBios = [...this.state.userBios];
+
+                        const changes = snapshot.docChanges();
+
+                        changes.forEach(change => {
+                            userBios.unshift(change.doc.data());
+                        });
+                        this.setState({ userBios });
+                    })
+                });
+            };
+        });
     }
 
     setBio = e => {
         e.preventDefault();
+
+        const uniqueId = this.state.database.collection(this.state.user.uid).doc().id;
+
         const title = this.state.title.current.value;
 
         const bio = this.state.bio.current.value;
 
-        this.state.database.collection(this.props.user.uid).add({
-            title: title,
-            bio: bio
-        });
+        if(title && bio) {
+            this.state.database.collection(this.state.user.uid).doc(uniqueId).set({
+                title: title,
+                bio: bio,
+                id: uniqueId,
+            });
+        } else {
+            alert('please fill in the blank')
+        }
 
         this.state.title.current.value = '';
         this.state.bio.current.value = '';
     }
 
-    deleteBio = () => {
-        // this.state.database.collection(this.props.user.uid).doc(id).delete();
+    deleteBio = (e) => {
+        const uniqueId = e.target.parentNode.id;
+
+        this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
+            const userBios = [...this.state.userBios];
+
+            const filteredBios = userBios.filter(bio => bio.id !== uniqueId);
+
+            this.setState({ userBios: filteredBios });
+        })
+
+        this.state.database.collection(this.state.user.uid).doc(uniqueId).delete();
     }
 
     render() { 
@@ -48,9 +87,9 @@ class Bio extends Component {
                 </form>
 
                 <div className='bioContainer'>
-                    {this.props.userBios.map((bio, i) => {
+                    {this.state.userBios.map((bio, i) => {
                         return (
-                            <div key={i} className='bio'>
+                            <div key={i} id={bio.id} className='bio'>
                                 <h3>{bio.title}</h3>
 
                                 <p>{bio.bio}</p>

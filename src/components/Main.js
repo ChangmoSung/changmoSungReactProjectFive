@@ -18,8 +18,8 @@ class Main extends Component {
                 <div className="wrapper">
                     {this.props.userImages.map((image, i) => {
                         return (
-                            <div key={i} className="galleryImage" onClick={this.enlargeImage} tabIndex='0'>
-                                <img src={image}></img>
+                            <div key={i} className="galleryImage" tabIndex='0'>
+                                <img src={image} alt='user uploaded' onClick={this.enlargeImage}></img>
                                 <button onClick={this.props.deleteImage}>delete</button>
                             </div>
                         );

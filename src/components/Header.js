@@ -26,17 +26,17 @@ class Header extends Component {
     }
 
     upload = imageToUpload => {
-        const uniqueKey = this.state.database.collection("uniqueKey").doc().id;
+        const uniqueId = this.state.database.collection("uniqueId").doc().id;
 
         let uploadTask;
         
         if(this.state.profileImage) {
             uploadTask = this.state.storage
-                .ref(`${this.props.user.uid}-profileImage/${uniqueKey}`)
+                .ref(`${this.props.user.uid}-profileImage/${uniqueId}`)
                 .put(imageToUpload);
         } else {
             uploadTask = this.state.storage
-                .ref(`${this.props.user.uid}-galleryImages/${uniqueKey}`)
+                .ref(`${this.props.user.uid}-galleryImages/${uniqueId}`)
                 .put(imageToUpload);
         }
 
@@ -50,12 +50,13 @@ class Header extends Component {
             },
             error => {
                 //error
+                console.log(error)
             },
             () => {
                 //complete
                 this.state.storage
                     .ref(`${this.props.user.uid}-galleryImages`)
-                    .child(uniqueKey)
+                    .child(uniqueId)
                     .getDownloadURL()
                     .then(url => {
                         this.props.userUploadedImageToDisplay(url);
@@ -74,7 +75,7 @@ class Header extends Component {
             <header>
                 <div className="wrapper headerFlexContainer">
                     <div className="profileImage">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/project-five-97681.appspot.com/o/Z6fwRPBHhyVDwn8eFKzGX0eUQk13-favourite-images%2FJRr5JCPzDzVRYx1OPeUl?alt=media&token=72dacc8e-57dc-40f5-ba10-2249c4e15244"></img>
+                        <img src="https://firebasestorage.googleapis.com/v0/b/project-five-97681.appspot.com/o/Z6fwRPBHhyVDwn8eFKzGX0eUQk13-favourite-images%2FJRr5JCPzDzVRYx1OPeUl?alt=media&token=72dacc8e-57dc-40f5-ba10-2249c4e15244" alt='profile'></img>
 
                         <label htmlFor='profileImageUpload'>profile</label>
                         <input id='profileImageUpload' type='file' onChange={this.uploadProfileImage}></input>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import firebase from "./components/firebase";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -18,7 +18,6 @@ class App extends Component {
       user: null,
       userImages: [],
       userUploadedImagesToDisplay: null,
-      userBios: [],
     };
   }
 
@@ -28,18 +27,6 @@ class App extends Component {
         this.setState({ user }, () => {
           this.userInfo(user);
         });
-
-        this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
-          const userBios = [...this.state.userBios];
-
-          const changes = snapshot.docChanges();
-
-          changes.forEach(change => {
-            userBios.unshift(change.doc.data());
-          })
-
-          this.setState({ userBios })
-        })
       };
     });
   };
@@ -111,7 +98,7 @@ class App extends Component {
               <LandingPage userInfo={this.userInfo} /> }
           </Route>
 
-          <Route path='/changmoSungReactProjectFive/bio' render={() => <Bio user={this.state.user} userBios={this.state.userBios} ></Bio>} />
+          <Route path='/changmoSungReactProjectFive/bio' render={() => <Bio user={this.state.user} ></Bio>} />
         </div>
       </Router>
     );
