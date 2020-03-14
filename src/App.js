@@ -80,7 +80,7 @@ class App extends Component {
               res.items.map(item => {
                 item.getDownloadURL().then(url => {
 
-                  this.setState({ profileImage: url });
+                  this.setState({ profileVideo: url });
                 });
               });
             });
@@ -134,7 +134,7 @@ class App extends Component {
       const filteredUserVideos = userVideos.filter(video =>
         video !== userDeletedVideo);
 
-      this.setState({ userImages: filteredUserVideos });
+      this.setState({ userVideos: filteredUserVideos });
 
       this.state.storage.refFromURL(userDeletedVideo).delete();
     }
@@ -154,6 +154,7 @@ class App extends Component {
                   user={this.state.user}
                   userImages={this.state.userImages}
                   profileImage={this.state.profileImage}
+                  profileVideo={this.state.profileVideo}
                   userUploadedImageToDisplay={this.userUploadedImageToDisplay}
                   userUploadedVideoToDisplay={this.userUploadedVideoToDisplay}
                 />

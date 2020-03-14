@@ -94,7 +94,7 @@ class Header extends Component {
                     .child(this.state.upload
                         ? this.state.galleryImageUploaded
                             ? `${uniqueId}`
-                            :  `${uniqueId}`
+                            : `${uniqueId}`
                         : this.state.profileImageUploaded
                             ? 'profileImage'
                             : 'profileVideo'
@@ -105,7 +105,9 @@ class Header extends Component {
                             this.setState({
                                 profileImage: this.state.profileImageUploaded ? url : null,
                                 profileImageUploaded: false,
+
                                 profileVideo: this.state.profileVideoUploaded ? url : null,
+                                profileVideoUploaded: false,
                             })
                         } else {
                             if(this.state.galleryImageUploaded) {
@@ -128,6 +130,10 @@ class Header extends Component {
                 <div className="wrapper headerFlexContainer">
                     <div className="profileImage">
                         <img src={this.state.profileImage ? this.state.profileImage : this.props.profileImage} alt='profile'></img>
+
+                        <video src={this.state.profileVideo ? this.state.profileVideo : this.props.profileVideo} alt='profile'></video>
+
+                        
 
                         <label htmlFor='profileImageUpload'>profile</label>
                         <input id='profileImageUpload' type='file' onChange={this.uploadProfileImage}></input>
