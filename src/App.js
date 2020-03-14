@@ -30,6 +30,20 @@ class App extends Component {
 
           this.state.storage
             .ref()
+            .child(`${this.state.user.uid}-galleryImages`)
+            .listAll()
+            .then(res => {
+              res.items.map(item => {
+                item.getDownloadURL().then(url => {
+                  userImages.push(url);
+
+                  this.setState({ userImages });
+                });
+              });
+            });
+
+          this.state.storage
+            .ref()
             .child(`${this.state.user.uid}-profileImage`)
             .listAll()
             .then(res => {
@@ -37,20 +51,6 @@ class App extends Component {
                 item.getDownloadURL().then(url => {
   
                   this.setState({ profileImage: url });
-                });
-              });
-            });
-  
-          this.state.storage
-            .ref()
-            .child(`${this.state.user.uid}-galleryImages`)
-            .listAll()
-            .then(res => {
-              res.items.map(item => {
-                item.getDownloadURL().then(url => {
-                  userImages.push(url);
-  
-                  this.setState({ userImages });
                 });
               });
             });
@@ -68,16 +68,20 @@ class App extends Component {
   };
 
   deleteImage = e => {
-    const userImages = [...this.state.userImages];
+    const confirm = window.confirm('are you sure?');
 
-    const userDeletedImage = e.target.parentNode.childNodes[0].currentSrc;
-
-    const filteredUserImages = userImages.filter(image =>
-      image !== userDeletedImage);
-
-    this.setState({ userImages: filteredUserImages });
-
-    this.state.storage.refFromURL(userDeletedImage).delete();
+    if(confirm) {
+      const userImages = [...this.state.userImages];
+  
+      const userDeletedImage = e.target.parentNode.childNodes[0].currentSrc;
+  
+      const filteredUserImages = userImages.filter(image =>
+        image !== userDeletedImage);
+  
+      this.setState({ userImages: filteredUserImages });
+  
+      this.state.storage.refFromURL(userDeletedImage).delete();
+    }
   };
 
   render() {
@@ -105,7 +109,7 @@ class App extends Component {
               <LandingPage userInfo={this.userInfo} /> }
           </Route>
 
-          <Route path='/changmoSungReactProjectFive/bio' render={() => <Bio user={this.state.user} ></Bio>} />
+          <Route path='/changmoSungReactProjectFive/bio' render={() => <Bio ></Bio>} />
         </div>
       </Router>
     );

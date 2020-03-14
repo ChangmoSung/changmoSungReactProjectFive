@@ -10,6 +10,7 @@ class Header extends Component {
             progress: 0,
             profileImage: '',
             galleryImage: '',
+            galleryVideo: '',
             profileImageUploaded: false,
             galleryImageUploaded: false,
         };
@@ -22,11 +23,17 @@ class Header extends Component {
         }, () => this.upload(this.state.profileImage))
     }
 
-    uploadGalleryImage = e => {
-        this.setState({
-            galleryImageUploaded: true,
-            galleryImage: e.target.files[0],
-        }, () => this.upload(this.state.galleryImage))
+    uploadGallery = e => {
+        if (e.target.files[0].type.includes('video')) {
+            this.setState({
+                galleryVideo: e.target.files[0],
+            }, () => this.uploadVideo(this.state.galleryVideo))
+        } else {
+            this.setState({
+                galleryImageUploaded: true,
+                galleryImage: e.target.files[0],
+            }, () => this.upload(this.state.galleryImage))
+        }
     }
 
     upload = imageToUpload => {
@@ -34,15 +41,7 @@ class Header extends Component {
 
         let uploadTask;
         
-        if(this.state.profileImageUploaded) {
-            uploadTask = this.state.storage
-                .ref(`${this.props.user.uid}-profileImage/profileImage`)
-                .put(imageToUpload);
-        } else {
-            uploadTask = this.state.storage
-                .ref(`${this.props.user.uid}-galleryImages/${uniqueId}`)
-                .put(imageToUpload);
-        }
+        uploadTask = this.state.storage.ref(this.state.profileImageUploaded ? `${this.props.user.uid}-profileImage/profileImage` : `${this.props.user.uid}-galleryImages/${uniqueId}`).put(imageToUpload)
 
         uploadTask.on(
             "state_changed",
@@ -58,30 +57,29 @@ class Header extends Component {
             },
             () => {
                 //complete
-                if(this.state.profileImageUploaded) {
-                    this.state.storage
-                        .ref(`${this.props.user.uid}-profileImage`)
-                        .child('profileImage')
-                        .getDownloadURL()
-                        .then(url => {
-                            this.setState({ 
+                this.state.storage
+                    .ref(this.state.profileImageUploaded ? `${this.props.user.uid}-profileImage` : `${this.props.user.uid}-galleryImages`)
+                    .child(this.state.profileImageUploaded ? 'profileImage' : uniqueId)
+                    .getDownloadURL()
+                    .then(url => {
+                        if(this.state.profileImageUploaded) {
+                            this.setState({
                                 profileImage: url,
                                 profileImageUploaded: false,
-                             })
-                        });
-                } else {
-                    this.state.storage
-                        .ref(`${this.props.user.uid}-galleryImages`)
-                        .child(uniqueId)
-                        .getDownloadURL()
-                        .then(url => {
+                            })
+                        } else {
                             this.props.userUploadedImageToDisplay(url);
                             this.setState({ galleryImageUploaded: false })
-                        });
-                }
+                        }
+                    })
             }
         );
     };
+
+    uploadVideo = videoToUpload => {
+        console.log(videoToUpload)
+
+    }
 
     render() {
         return (
@@ -100,7 +98,7 @@ class Header extends Component {
                         <p>{this.props.userImages.length} posts</p>
 
                         <label htmlFor='fileUpload'>UPLOAD</label>
-                        <input id='fileUpload' type="file" onChange={this.uploadGalleryImage}></input>
+                        <input id='fileUpload' type="file" onChange={this.uploadGallery}></input>
 
                         <div className="progressBar">
                             <span style={{ width: `${this.state.progress}%` }}></span>
