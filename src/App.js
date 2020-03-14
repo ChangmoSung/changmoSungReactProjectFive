@@ -17,6 +17,7 @@ class App extends Component {
       auth: firebase.auth(),
       user: null,
       userImages: [],
+      profileImage: null,
       userUploadedImagesToDisplay: null,
     };
   }
@@ -25,33 +26,38 @@ class App extends Component {
     this.state.auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user }, () => {
-          this.userInfo(user);
+          const userImages = [...this.state.userImages];
+
+          this.state.storage
+            .ref()
+            .child(`${this.state.user.uid}-profileImage`)
+            .listAll()
+            .then(res => {
+              res.items.map(item => {
+                item.getDownloadURL().then(url => {
+  
+                  this.setState({ profileImage: url });
+                });
+              });
+            });
+  
+          this.state.storage
+            .ref()
+            .child(`${this.state.user.uid}-galleryImages`)
+            .listAll()
+            .then(res => {
+              res.items.map(item => {
+                item.getDownloadURL().then(url => {
+                  userImages.push(url);
+  
+                  this.setState({ userImages });
+                });
+              });
+            });
         });
       };
     });
   };
-
-  userInfo = user => {
-    this.setState({
-      user
-    }, () => {
-    const userImages = [...this.state.userImages];
-
-    this.state.storage
-      .ref()
-      .child(`${this.state.user.uid}-galleryImages`)
-      .listAll()
-      .then(res => {
-        res.items.map(item => {
-          item.getDownloadURL().then(url => {
-            userImages.push(url);
-
-            this.setState({ userImages });
-          });
-        });
-      });
-    })
-  }
 
   userUploadedImageToDisplay = url => {
     const userImages = [...this.state.userImages];
@@ -86,6 +92,7 @@ class App extends Component {
                 <Header
                   user={this.state.user}
                   userImages={this.state.userImages}
+                  profileImage={this.state.profileImage}
                   userUploadedImageToDisplay={this.userUploadedImageToDisplay}
                 />
 
