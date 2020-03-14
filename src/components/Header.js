@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import firebase from "./firebase";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   constructor() {
     super();
     this.state = {
-      storage: firebase.storage(),
-      database: firebase.firestore(),
-      progress: 0,
-      upload: false,
-      profileImage: null,
-      galleryImage: null,
-      galleryVideo: null,
-      profileImageUploaded: false,
-      galleryImageUploaded: false,
+        storage: firebase.storage(),
+        database: firebase.firestore(),
+        auth: firebase.auth(),
+        progress: 0,
+        upload: false,
+        profileImage: null,
+        galleryImage: null,
+        galleryVideo: null,
+        profileImageUploaded: false,
+        galleryImageUploaded: false,
       galleryVideoUploaded: false
     };
   }
-// e.target.files[0].type.includes("video")
+
     uploadProfileImage = e => {
         if(e.target.files[0].type.includes('video')) {
             alert('For profile, you can only upload image')
@@ -114,6 +116,21 @@ class Header extends Component {
     );
   };
 
+    signOut = () => {
+        this.state.auth.signOut();
+
+        this.state.auth.onAuthStateChanged(user => {
+            console.log(user)
+            if (user) {
+            } else {
+                this.setState({
+                    user: null,
+                })
+                window.location.reload(false)
+            }
+        })
+    }
+
   render() {
     return (
         <header>
@@ -150,6 +167,8 @@ class Header extends Component {
                         <span style={{ width: `${this.state.progress}%` }}></span>
                     </div>
                 </div>
+
+                <Link to='/changmoSungReactProjectFive/' onClick={this.signOut} className='signOut' >sign out</Link>
             </div>
         </header>
     );

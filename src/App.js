@@ -6,7 +6,6 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import LandingPage from "./components/LandingPage";
-import Bio from "./components/Bio";
 
 class App extends Component {
   constructor() {
@@ -131,7 +130,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          {/* <Nav /> */}
 
           <Route path="/changmoSungReactProjectFive/">
             {this.state.user ? (
@@ -157,7 +156,6 @@ class App extends Component {
             )}
           </Route>
 
-          <Route path="/changmoSungReactProjectFive/bio" component={Bio} />
         </div>
       </Router>
     );

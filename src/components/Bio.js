@@ -45,15 +45,11 @@ class Bio extends Component {
 
         const bio = this.state.bio.current.value;
 
-        if(title && bio) {
-            this.state.database.collection(this.state.user.uid).doc(uniqueId).set({
-                title: title,
-                bio: bio,
-                id: uniqueId,
-            });
-        } else {
-            alert('please fill in the blank')
-        }
+        this.state.database.collection(this.state.user.uid).doc(uniqueId).set({
+            title: title,
+            bio: bio,
+            id: uniqueId,
+        });
 
         this.state.title.current.value = '';
         this.state.bio.current.value = '';
@@ -82,10 +78,10 @@ class Bio extends Component {
             <div className='bioSection'>
                 <form onSubmit={this.setBio} className='bioForm'>
                     <label htmlFor='title'>Title</label>
-                    <input type='text' id='title' ref={this.state.title}></input>
+                    <input type='text' id='title' ref={this.state.title} required></input>
 
                     <label htmlFor='bio'>Bio</label>
-                    <input type='textarea' id='bio' ref={this.state.bio}></input>
+                    <input type='textarea' id='bio' ref={this.state.bio} cols='10' required></input>
 
                     <button>add to bio</button>
                 </form>
