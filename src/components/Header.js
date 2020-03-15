@@ -153,21 +153,23 @@ class Header extends Component {
                 <div className="userInfo">
                     <h1>{this.props.user.email}</h1>
 
-                    <p>{this.props.userImages.length} posts</p>
-
-                    <label htmlFor="fileUpload">upload</label>
-                    <input
-                        id="fileUpload"
-                        type="file"
-                        onChange={this.uploadGallery}
-                    ></input>
-
                     <div className="progressBar">
                         <span style={{ width: `${this.state.progress}%` }}></span>
                     </div>
-                </div>
 
-                <Link to='/changmoSungReactProjectFive/' onClick={this.signOut} className='signOut' >sign out</Link>
+                    <div className='uploadAndSignOutButtons'>
+                        <p>{this.props.userImages.length} posts</p>
+
+                        <label htmlFor="fileUpload">upload</label>
+                        <input
+                            id="fileUpload"
+                            type="file"
+                            onChange={this.uploadGallery}
+                        ></input>
+
+                        <Link to='/changmoSungReactProjectFive/' onClick={this.signOut} className='signOut' >sign out</Link>
+                    </div>
+                </div>
             </div>
         </header>
     );
