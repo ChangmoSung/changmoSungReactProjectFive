@@ -69,20 +69,9 @@ class LandingPage extends Component {
     render() {
         return (
             <div className='landingPage'>
-                <form className='signInForm' onSubmit={this.signIn}>
-                    <label htmlFor='signInEmail'>Email</label>
-                    <input ref={this.state.signInEmail} id='signInEmail' type='email'></input>
-
-                    <label htmlFor='signInPassword'>Password</label>
-                    <input ref={this.state.signInPassword} id='signInPassword' type='password'></input>
-
-                    <button>Login</button>
-                </form>
-
-
                 {this.state.signUpButtonClicked
                 ? 
-                    <form onSubmit={this.signUp}>
+                    <form className='signUpForm' onSubmit={this.signUp}>
                         <label htmlFor='signUpEmail'>Email</label>
                         <input ref={this.state.signUpEmail} id='signUpEmail' type='email'></input>
 
@@ -93,7 +82,16 @@ class LandingPage extends Component {
 
                         <span onClick={this.signUpPopUp}>X</span>
                     </form>
-                : null}
+                : 
+                    <form className='signInForm' onSubmit={this.signIn}>
+                        <label htmlFor='signInEmail'>Email</label>
+                        <input ref={this.state.signInEmail} id='signInEmail' type='email'></input>
+
+                        <label htmlFor='signInPassword'>Password</label>
+                        <input ref={this.state.signInPassword} id='signInPassword' type='password'></input>
+
+                        <button>Login</button>
+                    </form>}
                 
                 {!this.state.signUpButtonClicked ? <button onClick={this.signUpPopUp}>Sign up</button> : null}
             </div>
