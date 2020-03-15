@@ -37,29 +37,32 @@ video {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 94vh;
+  height: 100vh;
 }
 
 .signInForm,
 .signUpForm {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  width: 50%;
-  height: 50%;
-  position: relative;
+  max-width: 80rem;
+  width: 70%;
+  padding: 6%;
+  border-radius: 1rem;
+  background: lightblue;
 }
 
 .signInForm label,
 .signUpForm label {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
 }
 
 .signInForm input,
 .signUpForm input {
-  margin-bottom: 5rem;
-  height: 3.5rem;
-  font-size: 1.8rem; 
+  margin-bottom: 8rem;
+  height: 3.7rem;
+  font-size: 1.9rem; 
 }
 
 .signUpForm span {
@@ -69,12 +72,16 @@ video {
   font-size: 2.5rem;
 }
 
-.landingPage button {
-  width: 50%;
-  height: 3.7rem;
+.signInAndUpButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.signInAndUpButtons button {
+  width: 35%;
+  height: 4rem;
   font-size: 1.7rem;
   font-weight: bold;
-  margin: 0 auto;
   color: white;
   background: salmon;
   cursor: pointer;
@@ -120,6 +127,18 @@ header {
 .profileImage input {
   width: 0.1px;
   height: 0.1px;
+}
+
+.profileImage .uploadImageText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  line-height: 2.5rem;
+}
+
+.uploadImageText span {
+  text-align: center;
 }
 
 .userInfo {
@@ -205,7 +224,7 @@ header {
 .progressBar span {
   position: absolute;
   background: linear-gradient(319deg, #2980b9 0%, #6dd5fa 37%, #ffffff 100%);
-  border-radius: 3rem;
+  border-radius: 1rem;
   max-width: calc(100% - 1.4rem);
   left: 0.7rem;
   top: 0.7rem;
@@ -321,7 +340,7 @@ header {
 }
 
 .bioForm {
-  height: 35vh;
+  height: 40vh;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -363,7 +382,7 @@ header {
 .bio button,
 .bioForm button {
   width: 10rem;
-  height: 3.2rem;
+  height: 3.7rem;
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
@@ -389,6 +408,11 @@ header {
 /* --------------- */
 
 @media(max-width: 1000px) {
+  .signInForm,
+  .signUpForm {
+    padding: 8%;
+  }
+
   .gallery .wrapper {
     justify-content: space-between;
   }
@@ -403,7 +427,12 @@ header {
 }
 
 @media(max-width: 700px) {
-  .profileImage label{
+  .signInForm,
+  .signUpForm {
+    padding: 12%;
+  }
+
+  .profileImage label {
     width: 17rem;
     height: 17rem;
   }
@@ -413,7 +442,7 @@ header {
     width: 60%;
   }
 
-  .uploadAndSignOutButtons p{
+  .uploadAndSignOutButtons p {
     font-size: 1.7rem;
   }
 
@@ -428,6 +457,14 @@ header {
     height: 3.3rem;
   }
 
+  .progressBar span {
+    max-width: calc(100% - 1rem);
+    left: 0.5rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    transition: width 0.3s;
+  }
+
   .galleryImage {
     width: 100%;
     min-height: 50rem;
@@ -440,6 +477,12 @@ header {
 }
 
 @media(max-width: 550px) {
+  .signInForm,
+  .signUpForm {
+    width: 100%;
+    padding: 16% 12%;
+  }
+
   .profileImage label {
     width: 13rem;
     height: 13rem;
@@ -452,7 +495,7 @@ header {
   .userInfo h1 {
     width: 100%;
     position: absolute;
-    top: 31%;
+    top: 30%;
     left: 0;
     text-align: center;
   }
@@ -477,8 +520,29 @@ header {
   }
 }
 
-@media(max-width: 430px) {
+@media(max-width: 414px) {
+  header {
+    height: 40vh;
+  }
+
+  .headerFlexContainer {
+    align-items: flex-start;
+  }
+
+  .profileImage,
+  .userInfo  {
+    height: 80%;
+  }
+
+  .userInfo h1 {
+    top: 36%;
+  }
+
   .galleryImage {
     min-height: 40rem;
+  }
+
+  .bioForm {
+    height: 45vh;
   }
 }

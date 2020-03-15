@@ -72,11 +72,11 @@ class LandingPage extends Component {
                 {this.state.signUpButtonClicked
                 ? 
                     <form className='signUpForm' onSubmit={this.signUp}>
-                        <label htmlFor='signUpEmail'>Email</label>
-                        <input ref={this.state.signUpEmail} id='signUpEmail' type='email'></input>
+                        <label htmlFor='signUpEmail'>email</label>
+                        <input ref={this.state.signUpEmail} id='signUpEmail' type='email' placeholder='email' required></input>
 
-                        <label htmlFor='signUpPassword'>Password</label>
-                        <input ref={this.state.signUpPassword} id='signUpPassword' type='password'></input>
+                        <label htmlFor='signUpPassword'>password</label>
+                        <input ref={this.state.signUpPassword} id='signUpPassword' type='password' placeholder='password' required></input>
 
                         <button>Sign up</button>
 
@@ -84,16 +84,21 @@ class LandingPage extends Component {
                     </form>
                 : 
                     <form className='signInForm' onSubmit={this.signIn}>
-                        <label htmlFor='signInEmail'>Email</label>
-                        <input ref={this.state.signInEmail} id='signInEmail' type='email'></input>
+                        <label htmlFor='signInEmail'>email</label>
+                        <input ref={this.state.signInEmail} id='signInEmail' type='email' placeholder='email' required></input>
 
-                        <label htmlFor='signInPassword'>Password</label>
-                        <input ref={this.state.signInPassword} id='signInPassword' type='password'></input>
+                        <label htmlFor='signInPassword'>password</label>
+                        <input ref={this.state.signInPassword} id='signInPassword' type='password' placeholder='password' required></input>
 
-                        <button>Login</button>
+
+                        <div className='signInAndUpButtons'>
+                            {this.state.signUpButtonClicked ? null : <button>sign in</button>}
+
+                            {!this.state.signUpButtonClicked ? <button onClick={this.signUpPopUp}>sign up</button> : null}
+                        </div>
                     </form>}
                 
-                {!this.state.signUpButtonClicked ? <button onClick={this.signUpPopUp}>Sign up</button> : null}
+                
             </div>
         );
     }

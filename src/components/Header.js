@@ -9,7 +9,7 @@ class Header extends Component {
             storage: firebase.storage(),
             database: firebase.firestore(),
             auth: firebase.auth(),
-            progress: 0,
+            progress: 5,
             upload: false,
             profileImage: null,
             galleryImage: null,
@@ -69,8 +69,7 @@ class Header extends Component {
             snapshot => {
                 //progress
                 const progress = Math.round(
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100) + 5;
 
                 this.setState({ progress });
             },
@@ -113,6 +112,8 @@ class Header extends Component {
                         }
                     }
                 });
+                
+                setTimeout(() => this.setState({ progress: 5 }), 3000)
             }
         );
     };
@@ -152,7 +153,28 @@ class Header extends Component {
                                     onChange={this.uploadProfileImage}
                                 ></input>
                             </div>
-                        : <p>upload profile image!</p>}
+                        : 
+                            <div>
+                                <label htmlFor="profileImageUpload" className='uploadImageText'>
+                                {this.state.profileImage 
+                                    ? 
+                                        <img
+                                            src={this.state.profileImage}
+                                            alt="profile"
+                                        ></img> 
+                                    : 
+                                        <span>
+                                            click here for profile image!
+                                        </span>
+                                }
+                                </label>
+                                <input
+                                    id="profileImageUpload"
+                                    type="file"
+                                    onChange={this.uploadProfileImage}
+                                ></input>
+                            </div>
+                        }
                 </div>
 
                 <div className="userInfo">
