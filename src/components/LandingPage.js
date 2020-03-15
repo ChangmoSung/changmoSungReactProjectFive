@@ -59,6 +59,12 @@ class LandingPage extends Component {
     render() {
         return (
             <div className='landingPage'>
+                <h2>
+                    If you don't want to sign up, please use this test mode account 
+                    <span> Email: hirechangmo@gmail.com</span>
+                    <span> Password: hirechangmo</span>
+                </h2>
+
                 {this.state.signUpButtonClicked
                 ? 
                     <form className='signUpForm' onSubmit={this.signUp}>
@@ -68,7 +74,7 @@ class LandingPage extends Component {
                         <label htmlFor='signUpPassword'>password</label>
                         <input ref={this.state.signUpPassword} id='signUpPassword' type='password' placeholder='password' required></input>
 
-                        <button>Sign up</button>
+                        <button className='signUpPageButton'>sign up</button>
 
                         <span onClick={this.signUpPopUp}>X</span>
                     </form>

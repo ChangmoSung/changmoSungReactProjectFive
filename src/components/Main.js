@@ -19,11 +19,13 @@ class Main extends Component {
       <main className="gallery">
         <div className='links'>
           <Link to="/changmoSungReactProjectFive/"><i className="far fa-image"></i></Link>
+
           <Link to="/changmoSungReactProjectFive/video"><i className="fas fa-video"></i></Link>
+          
           <Link to='/changmoSungReactProjectFive/bio'><i className="fas fa-book"></i></Link>
         </div>
-        <ul className="wrapper">
 
+        <ul className="wrapper">
           <Route path="/changmoSungReactProjectFive/" exact>
             {this.props.userImages.map((image, i) => {
               return (
@@ -40,7 +42,6 @@ class Main extends Component {
             })}
           </Route>
 
-          {/* fix deleting video functionality */}
           <Route path="/changmoSungReactProjectFive/video" exact>
             {this.props.userVideos.map((video, i) => {
               return (
@@ -59,7 +60,6 @@ class Main extends Component {
           </Route>
 
           <Route path="/changmoSungReactProjectFive/bio" component={Bio} />
-
         </ul>
       </main>
     );

@@ -35,9 +35,20 @@ video {
 .landingPage {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+h2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15%;
+  text-align: center;
+  margin: 0 auto 2rem;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
 }
 
 .signInForm,
@@ -69,9 +80,24 @@ video {
 
 .signUpForm span {
   position: absolute;
-  top: 2rem;
-  right: 0;
-  font-size: 2.5rem;
+  top: 2.5rem;
+  right: 2.5rem;
+  font-size: 3.5rem;
+  color: white;
+}
+
+.signUpPageButton {
+  width: 50%;
+  height: 4rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin: 0 auto;
+  color: white;
+  background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
+  cursor: pointer;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  transition: all 0.2s;
 }
 
 .signInAndUpButtons {
@@ -90,6 +116,10 @@ video {
   border-radius: 1rem;
   text-transform: uppercase;
   transition: all 0.2s;
+}
+
+.signInAndUpButtons button:hover {
+  background: linear-gradient(319deg, #abe9cd 0%, #3eadcf 74%);
 }
 
 /* ------------------------ */
@@ -218,6 +248,31 @@ header {
   transform: scale(1.1);
 }
 
+.uploadEmoji {
+  display: none;
+}
+
+.uploadEmoji.emojiVisible {
+  display: inline-block;
+  position: absolute;
+  font-size: 3rem;
+  animation: emoji 1s ease-in-out infinite;
+}
+
+@keyframes emoji {
+  0% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -5rem;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+}
+
 .progressBar {
   position: relative;
   background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
@@ -278,15 +333,15 @@ header {
   max-width: 100rem;
   height: 4vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin: 2.5rem auto;
   font-size: 2rem;
 }
 
 .links a {
   font-size: 4rem;
+  width: 15%;
   text-decoration: none;
-  width: 20%;
   text-align: center;
   color: blue;
 }
@@ -345,6 +400,10 @@ header {
   border: none;
   background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   font-size: 1.8rem;
+}
+
+.galleryImage button:hover {
+  background: linear-gradient(319deg, #abe9cd 0%, #3eadcf 74%);
 }
 
 /* ------------------- */
@@ -466,6 +525,10 @@ header {
     padding: 12%;
   }
 
+  .signInAndUpButtons button {
+    width: 40%;
+  }
+
   .profileImage label {
     width: 17rem;
     height: 17rem;
@@ -550,10 +613,6 @@ header {
 }
 
 @media(max-width: 414px) {
-  .signInAndUpButtons button {
-    width: 40%;
-  }
-
   header {
     height: 40vh;
   }

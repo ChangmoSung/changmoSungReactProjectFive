@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import firebase from "./firebase";
 
-
 class Bio extends Component {
     constructor() {
         super();
@@ -56,7 +55,7 @@ class Bio extends Component {
     }
 
     deleteBio = (e) => {
-        const confirm = window.confirm('are you sure?');
+        const confirm = window.confirm('Are you sure you want to delete the bio?');
 
         if(confirm) {
             const uniqueId = e.target.parentNode.id;

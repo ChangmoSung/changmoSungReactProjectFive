@@ -18,6 +18,7 @@ class Header extends Component {
             galleryImageUploaded: false,
             galleryVideoUploaded: false,
             progressSpan: React.createRef(),
+            uploadEmoji: React.createRef(),
         };
     }
 
@@ -115,27 +116,35 @@ class Header extends Component {
                     }
                 });
 
+                this.state.uploadEmoji.current.classList.add('emojiVisible')
+
                 setTimeout(() => {
                     this.state.progressSpan.current.classList.remove('progress')
                     this.setState({ progress: 0 })
-                },3000)
+
+                    this.state.uploadEmoji.current.classList.remove('emojiVisible')
+                },4000)
             }
         );
     };
 
     signOut = () => {
-        this.state.auth.signOut();
+        const confirm = window.confirm('Are you sure you want to sign out?');
 
-        this.state.auth.onAuthStateChanged(user => {
-            console.log(user)
-            if (user) {
-            } else {
-                this.setState({
-                    user: null,
-                })
-                window.location.reload(false)
-            }
-        })
+        if(confirm) {
+            this.state.auth.signOut();
+    
+            this.state.auth.onAuthStateChanged(user => {
+                console.log(user)
+                if (user) {
+                } else {
+                    this.setState({
+                        user: null,
+                    })
+                    window.location.reload()
+                }
+            })
+        }
     }
 
   render() {
@@ -194,7 +203,7 @@ class Header extends Component {
                             <span>{this.props.userImages.length} posts</span>
                         </p>
 
-                        <label htmlFor="fileUpload"><span>upload</span></label>
+                        <label htmlFor="fileUpload"><span>upload</span><span ref ={this.state.uploadEmoji}className='uploadEmoji'>😍</span></label>
                         <input
                             id="fileUpload"
                             type="file"

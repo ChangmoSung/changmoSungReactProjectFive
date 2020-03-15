@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import firebase from "./components/firebase";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import LandingPage from "./components/LandingPage";
@@ -91,7 +90,7 @@ class App extends Component {
   };
 
   deleteImage = e => {
-    const confirm = window.confirm("are you sure?");
+    const confirm = window.confirm("Are you sure you want to delete the image?");
 
     if (confirm) {
       const userImages = [...this.state.userImages];
