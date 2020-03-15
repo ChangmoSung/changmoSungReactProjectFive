@@ -23,6 +23,7 @@ class App extends Component {
 
   componentDidMount() {
     this.state.auth.onAuthStateChanged(user => {
+      console.log(user)
       if (user) {
         this.setState({ user }, () => {
           const userImages = [...this.state.userImages];
@@ -64,7 +65,6 @@ class App extends Component {
             .then(res => {
               res.items.map(item => {
                 item.getDownloadURL().then(url => {
-                  console.log(url)
                   this.setState({ profileImage: url });
                 });
               });
@@ -137,7 +137,6 @@ class App extends Component {
                   user={this.state.user}
                   userImages={this.state.userImages}
                   profileImage={this.state.profileImage}
-                  profileVideo={this.state.profileVideo}
                   userUploadedImageToDisplay={this.userUploadedImageToDisplay}
                   userUploadedVideoToDisplay={this.userUploadedVideoToDisplay}
                 />
@@ -150,7 +149,7 @@ class App extends Component {
                 />
               </div>
             ) : (
-              <LandingPage userInfo={this.userInfo} />
+              <LandingPage />
             )}
           </Route>
         </div>

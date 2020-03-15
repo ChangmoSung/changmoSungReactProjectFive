@@ -304,7 +304,8 @@ header {
   margin: 0 2rem 2rem;
 }
 
-.galleryImage img {
+.galleryImage img,
+.galleryImage video {
   position: absolute;
   top: 0;
   left: 0;
@@ -561,8 +562,7 @@ header {
     align-items: flex-start;
   }
 
-  .profileImage,
-  .userInfo  {
+  .userInfo {
     height: 80%;
   }
 

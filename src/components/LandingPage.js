@@ -27,16 +27,6 @@ class LandingPage extends Component {
             const errorMessage = error.message;
             alert(errorMessage);
         });
-
-        this.state.auth.onAuthStateChanged(user => {
-            if (user) {
-                this.setState({
-                    user,
-                }, () => {
-                        this.props.userInfo(user)
-                })
-            }
-        })
     }
 
     signUp = (e) => {
@@ -97,8 +87,6 @@ class LandingPage extends Component {
                             {!this.state.signUpButtonClicked ? <button onClick={this.signUpPopUp}>sign up</button> : null}
                         </div>
                     </form>}
-                
-                
             </div>
         );
     }
