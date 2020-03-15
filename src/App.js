@@ -18,7 +18,6 @@ class App extends Component {
       userImages: [],
       userVideos: [],
       profileImage: null,
-      profileVideo: null
     };
   }
 
@@ -65,6 +64,7 @@ class App extends Component {
             .then(res => {
               res.items.map(item => {
                 item.getDownloadURL().then(url => {
+                  console.log(url)
                   this.setState({ profileImage: url });
                 });
               });
@@ -130,11 +130,9 @@ class App extends Component {
     return (
       <Router>
         <div>
-          {/* <Nav /> */}
-
           <Route path="/changmoSungReactProjectFive/">
             {this.state.user ? (
-              <div>
+              <div className='root'>
                 <Header
                   user={this.state.user}
                   userImages={this.state.userImages}
@@ -155,7 +153,6 @@ class App extends Component {
               <LandingPage userInfo={this.userInfo} />
             )}
           </Route>
-
         </div>
       </Router>
     );

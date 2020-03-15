@@ -29,7 +29,6 @@ video {
 }
 
 header {
-  background: rgb(245, 245, 245);
   height: 33vh;
 }
 
@@ -41,46 +40,21 @@ header {
 }
 
 .profileImage {
-  position: relative;
   width: 22rem;
   height: 22rem;
+}
+
+.profileImage label {
+  cursor: pointer;
 }
 
 .profileImage img {
   border-radius: 50%;
 }
 
-.profileImage label {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3rem;
-  text-align: center;
-  padding-top: 2.5%;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-  background-color: pink;
-  border-radius: 3rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.profileImage:hover label,
-.profileImage:focus label {
-  background: skyblue;
-  outline: 1px dotted black;
-}
-
 .profileImage input {
-  font-family: 'Simonetta', ;
   width: 0.1px;
   height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
 }
 
 .userInfo {
@@ -100,43 +74,42 @@ header {
   font-size: 2rem;
 }
 
+.userInfo input {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	z-index: -1;
+}
+
 .userInfo label {
-  width: 35%;
+  width: 15rem;
   height: 3.5rem;
-  text-align: center;
-  padding-top: 2%;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 700;
   color: white;
-  background-color: skyblue;
-  border-radius: 3rem;
-  display: inline-block;
+  background: salmon;
   cursor: pointer;
+  border-radius: 1rem;
+  text-align: center;
+  padding: 0.85rem;
   transition: all 0.2s;
 }
 
-.userInfo label:hover,
-.userInfo label:focus {
-  background: pink;
-  outline: 1px dotted black;
-}
-    
-.userInfo input {
-  overflow: hidden;
-  z-index: -1;
+.userInfo label:hover {
+  background: blue;
 }
 
 .userInfo .progressBar {
   position: relative;
+  background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   width: 100%;
   height: 4rem;
-  background: skyblue;
-  border-radius: 3rem;
+  border-radius: 1rem;
 }
 
 .userInfo .progressBar span {
   position: absolute;
-  background: pink;
+  background: linear-gradient(319deg, #2980b9 0%, #6dd5fa 37%, #ffffff 100%);
   border-radius: 3rem;
   max-width: calc(100% - 1.4rem);
   left: 0.7rem;
@@ -158,7 +131,7 @@ header {
   font-weight: bold;
   color: white;
   background-color: pink;
-  border-radius: 3rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -176,13 +149,13 @@ header {
 
 .gallery {
   min-height:67vh;
-  background: rgb(245, 245, 245);
 }
 
 .gallery .wrapper {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 .links {
@@ -196,19 +169,18 @@ header {
 }
 
 .links a {
+  font-size: 4rem;
   text-decoration: none;
-  background: skyblue;
-  color: white;
   width: 20%;
   text-align: center;
-  padding-top: 0.8rem;
+  color: blue;
 }
 
 .galleryImage {
   position: relative;
   width: calc(100% / 3 - 1.5rem);
   min-height: 25rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   overflow: hidden;
   background: skyblue;
   margin-bottom: 3rem;
