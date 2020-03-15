@@ -321,7 +321,7 @@ header {
 }
 
 .bioForm {
-  height: 30vh;
+  height: 35vh;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -474,10 +474,6 @@ header {
   .signOut,
   .progressBar {
     height: 3rem;
-  }
-
-  .bioForm {
-    height: 35vh;
   }
 }
 
