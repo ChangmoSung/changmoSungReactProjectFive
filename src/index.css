@@ -40,11 +40,17 @@ header {
 }
 
 .profileImage {
-  width: 22rem;
-  height: 22rem;
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profileImage label {
+  display: inline-block;
+  width: 21rem;
+  height: 21rem;
   cursor: pointer;
 }
 
@@ -60,54 +66,83 @@ header {
 .userInfo {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  text-align: center;
   width: 65%;
-  height: 70%;
+  height: 100%;
 }
 
 .userInfo h1 {
-  font-size: 3.5rem;
+  font-size: 3.3rem;
   margin: 0;
 }
 
-.userInfo p {
-  font-size: 2rem;
+.uploadAndSignOutButtons {
+  display: flex;
+  justify-content: space-evenly;
+  text-transform: uppercase;
 }
 
-.userInfo input {
+.uploadAndSignOutButtons p {
+  font-size: 2rem;
+  margin: 0;
+  padding-top: 1rem;
+}
+
+.uploadAndSignOutButtons input {
   width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
 	z-index: -1;
 }
 
-.userInfo label {
-  width: 15rem;
-  height: 3.5rem;
-  font-size: 1.8rem;
-  font-weight: 700;
+.uploadAndSignOutButtons label {
+  width: 13rem;
+  height: 3.7rem;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: bold;
   color: white;
   background: salmon;
   cursor: pointer;
   border-radius: 1rem;
-  text-align: center;
-  padding: 0.85rem;
   transition: all 0.2s;
 }
 
-.userInfo label:hover {
+.uploadAndSignOutButtons label:hover {
   background: blue;
 }
 
-.userInfo .progressBar {
+.signOut {
+  display: inline-block;
+  text-decoration: none;
+  width: 13rem;
+  height: 3.7rem;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  background: pink;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.signOut:hover {
+  background: blue;
+}
+
+.progressBar {
   position: relative;
   background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   width: 100%;
-  height: 4rem;
+  height: 3.5rem;
   border-radius: 1rem;
 }
 
-.userInfo .progressBar span {
+.progressBar span {
   position: absolute;
   background: linear-gradient(319deg, #2980b9 0%, #6dd5fa 37%, #ffffff 100%);
   border-radius: 3rem;
@@ -118,29 +153,6 @@ header {
   transition: width 0.3s;
 }
 
-.signOut {
-  text-decoration: none;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  width: 18rem;
-  height: 4rem;
-  text-align: center;
-  padding-top: 1rem;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-  background-color: pink;
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.signOut:hover,
-.signOut:focus {
-  background: skyblue;
-  outline: 1px dotted black;
-}
 
 /* ------------------------ */
 /* ---------header--------- */
@@ -164,7 +176,7 @@ header {
   height: 4vh;
   display: flex;
   justify-content: space-evenly;
-  margin: 0 auto 2rem;
+  margin: 2.5rem auto;
   font-size: 2rem;
 }
 
@@ -178,16 +190,16 @@ header {
 
 .galleryImage {
   position: relative;
-  width: calc(100% / 3 - 1.5rem);
-  min-height: 25rem;
+  width: calc(100% / 3 - 1.34rem);
+  min-height: 35rem;
   border-radius: 1rem;
   overflow: hidden;
   background: skyblue;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .galleryImage:nth-child(3n+2) {
-  margin: 0 2.25rem 3rem;
+  margin: 0 2rem 2rem;
 }
 
 .galleryImage.enlarged {
@@ -330,4 +342,88 @@ header {
 .bio button {
   width: 10rem;
   height: 3rem;
+}
+
+/* --------------- */
+/* -------bio----- */
+/* --------------- */
+
+@media(max-width: 1000px) {
+  .gallery .wrapper {
+    justify-content: space-between;
+  }
+  .galleryImage {
+    width: calc(100% / 2 - 1rem);
+    min-height: 40rem;
+  }
+
+  .galleryImage:nth-child(3n+2) {
+    margin: 0 0 2rem;
+  }
+}
+
+@media(max-width: 700px) {
+  .profileImage label{
+    width: 17rem;
+    height: 17rem;
+  }
+
+  .userInfo h1 {
+    font-size: 2.6rem;
+    width: 60%;
+  }
+
+  .uploadAndSignOutButtons p{
+    font-size: 1.7rem;
+  }
+
+  .uploadAndSignOutButtons label,
+  .signOut {
+    width: 11rem;
+    height: 3.3rem;
+    padding-top: 0.95rem;
+    font-size: 1.6rem;
+  }
+
+  .progressBar {
+    height: 3.3rem;
+  }
+
+  .galleryImage {
+    width: 100%;
+    min-height: 50rem;
+  }
+}
+
+@media(max-width: 550px) {
+  .userInfo {
+    justify-content: space-evenly;
+  }
+
+  .userInfo h1 {
+    width: 100%;
+    position: absolute;
+    top: 31%;
+    left: 0;
+    text-align: center;
+  }
+
+  .userInfo {
+    justify-content: center;
+  }
+
+  .uploadAndSignOutButtons {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .uploadAndSignOutButtons label {
+    margin: 2rem 0;
+  }
+}
+
+@media(max-width: 430px) {
+  .galleryImage {
+    min-height: 40rem;
+  }
 }
