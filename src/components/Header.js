@@ -137,17 +137,22 @@ class Header extends Component {
         <header>
             <div className="wrapper headerFlexContainer">
                 <div className="profileImage">
-                    <label htmlFor="profileImageUpload">
-                        <img
-                            src={this.state.profileImage ? this.state.profileImage : this.props.profileImage}
-                            alt="profile"
-                        ></img>
-                    </label>
-                    <input
-                        id="profileImageUpload"
-                        type="file"
-                        onChange={this.uploadProfileImage}
-                    ></input> 
+                    {this.props.profileImage 
+                        ? 
+                            <div>
+                                <label htmlFor="profileImageUpload">
+                                    <img
+                                        src={this.state.profileImage ? this.state.profileImage : this.props.profileImage}
+                                        alt="profile"
+                                    ></img>
+                                </label>
+                                <input
+                                    id="profileImageUpload"
+                                    type="file"
+                                    onChange={this.uploadProfileImage}
+                                ></input>
+                            </div>
+                        : <p>upload profile image!</p>}
                 </div>
 
                 <div className="userInfo">
