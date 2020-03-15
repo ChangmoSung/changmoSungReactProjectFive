@@ -9,14 +9,15 @@ class Header extends Component {
             storage: firebase.storage(),
             database: firebase.firestore(),
             auth: firebase.auth(),
-            progress: 5,
+            progress: 0,
             upload: false,
             profileImage: null,
             galleryImage: null,
             galleryVideo: null,
             profileImageUploaded: false,
             galleryImageUploaded: false,
-            galleryVideoUploaded: false
+            galleryVideoUploaded: false,
+            progressSpan: React.createRef(),
         };
     }
 
@@ -68,8 +69,9 @@ class Header extends Component {
             "state_changed",
             snapshot => {
                 //progress
+                this.state.progressSpan.current.classList.add('progress')
                 const progress = Math.round(
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100) + 5;
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 
                 this.setState({ progress });
             },
@@ -112,8 +114,11 @@ class Header extends Component {
                         }
                     }
                 });
-                
-                setTimeout(() => this.setState({ progress: 5 }), 3000)
+
+                setTimeout(() => {
+                    this.state.progressSpan.current.classList.remove('progress')
+                    this.setState({ progress: 0 })
+                },3000)
             }
         );
     };
@@ -181,11 +186,13 @@ class Header extends Component {
                     <h1>{this.props.user.email}</h1>
 
                     <div className="progressBar">
-                        <span style={{ width: `${this.state.progress}%` }}></span>
+                        <span ref={this.state.progressSpan} style={{ width: `${this.state.progress}%` }}></span>
                     </div>
 
                     <div className='uploadAndSignOutButtons'>
-                        <p>{this.props.userImages.length} posts</p>
+                        <p>
+                            <span>{this.props.userImages.length} posts</span>
+                        </p>
 
                         <label htmlFor="fileUpload"><span>upload</span></label>
                         <input

@@ -49,13 +49,15 @@ video {
   width: 70%;
   padding: 6%;
   border-radius: 1rem;
-  background: lightblue;
+  background: linear-gradient(319deg, #abe9cd 0%, #3eadcf 74%);
 }
 
 .signInForm label,
 .signUpForm label {
+  color: white;
   font-size: 2.2rem;
   margin-bottom: 3rem;
+  text-transform: uppercase;
 }
 
 .signInForm input,
@@ -83,7 +85,7 @@ video {
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
-  background: salmon;
+  background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   cursor: pointer;
   border-radius: 1rem;
   text-transform: uppercase;
@@ -162,9 +164,10 @@ header {
 }
 
 .uploadAndSignOutButtons p {
+  display: flex;
+  align-items: center;
   font-size: 2rem;
   margin: 0;
-  padding-top: 1rem;
 }
 
 .uploadAndSignOutButtons input {
@@ -183,14 +186,15 @@ header {
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
-  background: salmon;
+  background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   cursor: pointer;
   border-radius: 1rem;
   transition: all 0.2s;
 }
 
 .uploadAndSignOutButtons label:hover {
-  background: blue;
+  background: linear-gradient(319deg, #abe9cd 0%, #3eadcf 74%);
+  transform: scale(1.1);
 }
 
 .signOut {
@@ -203,14 +207,15 @@ header {
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
-  background: pink;
+  background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .signOut:hover {
-  background: blue;
+  background: linear-gradient(319deg, #abe9cd 0%, #3eadcf 74%);
+  transform: scale(1.1);
 }
 
 .progressBar {
@@ -223,13 +228,32 @@ header {
 
 .progressBar span {
   position: absolute;
-  background: linear-gradient(319deg, #2980b9 0%, #6dd5fa 37%, #ffffff 100%);
+  background: white;
   border-radius: 1rem;
   max-width: calc(100% - 1.4rem);
   left: 0.7rem;
   top: 0.7rem;
   bottom: 0.7rem;
+  animation: progress 1.5s ease-in-out infinite;
   transition: width 0.3s;
+}
+
+.progressBar span.progress {
+  animation: none;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%
+  }
+
+  50% {
+    width: 5%;
+  }
+
+  100% {
+    width: 0%;
+  }
 }
 
 
@@ -273,7 +297,6 @@ header {
   min-height: 35rem;
   border-radius: 1rem;
   overflow: hidden;
-  background: skyblue;
   margin-bottom: 2rem;
 }
 
@@ -319,7 +342,7 @@ header {
   text-transform: uppercase;
   color: white;
   border: none;
-  background: pink;
+  background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   font-size: 1.8rem;
 }
 
@@ -340,7 +363,7 @@ header {
 }
 
 .bioForm {
-  height: 40vh;
+  height: 45vh;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -386,7 +409,7 @@ header {
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
-  background: salmon;
+  background: linear-gradient(319deg, #7f7fd5 0%, #86a8e7 37%, #91eae4 100%);
   border-radius: 1rem;
   border: none;
   cursor: pointer;
@@ -399,8 +422,14 @@ header {
   margin: 3rem auto 0;
 }
 
+.bioForm button:hover {
+  background: linear-gradient(319deg, #abe9cd 0%, #3eadcf 74%);
+  transform: scale(1.1);
+}
+
 .bio Button:hover {
-  background: blue;
+  background: linear-gradient(319deg, #abe9cd 0%, #3eadcf 74%);
+  transform: scale(1.1);
 }
 
 /* --------------- */
@@ -543,6 +572,6 @@ header {
   }
 
   .bioForm {
-    height: 45vh;
+    height: 55vh;
   }
 }
