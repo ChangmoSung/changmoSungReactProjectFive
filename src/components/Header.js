@@ -160,14 +160,14 @@ class Header extends Component {
                     <div className='uploadAndSignOutButtons'>
                         <p>{this.props.userImages.length} posts</p>
 
-                        <label htmlFor="fileUpload">upload</label>
+                        <label htmlFor="fileUpload"><span>upload</span></label>
                         <input
                             id="fileUpload"
                             type="file"
                             onChange={this.uploadGallery}
                         ></input>
 
-                        <Link to='/changmoSungReactProjectFive/' onClick={this.signOut} className='signOut' >sign out</Link>
+                        <Link to='/changmoSungReactProjectFive/' onClick={this.signOut} className='signOut' ><span>sign out</span></Link>
                     </div>
                 </div>
             </div>

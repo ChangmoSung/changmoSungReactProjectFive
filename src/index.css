@@ -28,6 +28,65 @@ video {
   margin: 0 auto;
 }
 
+/* ------------------*/
+/* ------global----- */
+/* ----------------- */
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 94vh;
+}
+
+.signInForm,
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 50%;
+  position: relative;
+}
+
+.signInForm label,
+.signUpForm label {
+  font-size: 1.8rem;
+}
+
+.signInForm input,
+.signUpForm input {
+  margin-bottom: 5rem;
+  height: 3.5rem;
+  font-size: 1.8rem; 
+}
+
+.signUpForm span {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  font-size: 2.5rem;
+}
+
+.landingPage button {
+  width: 50%;
+  height: 3.7rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin: 0 auto;
+  color: white;
+  background: salmon;
+  cursor: pointer;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+/* ------------------------ */
+/* ------landing page------ */
+/* ------------------------ */
+
 header {
   height: 33vh;
 }
@@ -97,10 +156,11 @@ header {
 }
 
 .uploadAndSignOutButtons label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 13rem;
   height: 3.7rem;
-  padding-top: 1rem;
-  text-align: center;
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
@@ -115,12 +175,12 @@ header {
 }
 
 .signOut {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   width: 13rem;
   height: 3.7rem;
-  text-align: center;
-  padding-top: 1rem;
   font-size: 1.7rem;
   font-weight: bold;
   color: white;
@@ -202,6 +262,14 @@ header {
   margin: 0 2rem 2rem;
 }
 
+.galleryImage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 90%;
+  transition: all 0.3s;
+}
+
 .galleryImage.enlarged {
   position: fixed;
   width: 100vw;
@@ -212,14 +280,6 @@ header {
   z-index: 3;
   background: pink;
   margin: 0;
-}
-
-.galleryImage img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 89%;
-  transition: all 0.3s;
 }
 
 .galleryImage:hover img,
@@ -236,7 +296,7 @@ header {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 11%;
+  height: 10%;
   text-transform: uppercase;
   color: white;
   border: none;
@@ -248,39 +308,6 @@ header {
 /* ------gallery------ */
 /* ------------------- */
 
-
-.landingPage {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 94vh;
-}
-
-.signInForm {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.signInForm label {
-  font-size: 1.8rem;
-}
-
-.signInForm input {
-  margin-bottom: 5rem;
-  height: 3.5rem;
-  font-size: 1.8rem; 
-}
-
-.landingPage button {
-  width: 50%;
-  margin: 0 auto;
-}
-
-/* ------------------------ */
-/* ------landing page------ */
-/* ------------------------ */
 
 .bioSection {
   margin: 0 auto;
@@ -294,7 +321,7 @@ header {
 }
 
 .bioForm {
-  height: 35vh;
+  height: 30vh;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -311,12 +338,6 @@ header {
   font-size: 1.8rem;
 }
 
-.bioForm button {
-  width: 15rem;
-  height: 3rem;
-  margin: 3rem auto 0;
-}
-
 .bio {
   display: flex;
   flex-direction: column;
@@ -326,7 +347,7 @@ header {
   margin-bottom: 3rem;
   padding: 1.5rem;
   border-radius: 2rem;
-  border: 2px solid skyblue;
+  border: 2px solid blue;
 }
 
 .bio h3 {
@@ -339,9 +360,28 @@ header {
   line-height: 2.7rem;
 }
 
-.bio button {
+.bio button,
+.bioForm button {
   width: 10rem;
-  height: 3rem;
+  height: 3.2rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  background: salmon;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.bioForm button {
+  width: 15rem;
+  margin: 3rem auto 0;
+}
+
+.bio Button:hover {
+  background: blue;
 }
 
 /* --------------- */
@@ -381,7 +421,6 @@ header {
   .signOut {
     width: 11rem;
     height: 3.3rem;
-    padding-top: 0.95rem;
     font-size: 1.6rem;
   }
 
@@ -393,9 +432,19 @@ header {
     width: 100%;
     min-height: 50rem;
   }
+
+  .bio,
+  .bioForm {
+    width: 100%;
+  }
 }
 
 @media(max-width: 550px) {
+  .profileImage label {
+    width: 13rem;
+    height: 13rem;
+  }
+
   .userInfo {
     justify-content: space-evenly;
   }
@@ -419,6 +468,16 @@ header {
 
   .uploadAndSignOutButtons label {
     margin: 2rem 0;
+  }
+
+  .uploadAndSignOutButtons label,
+  .signOut,
+  .progressBar {
+    height: 3rem;
+  }
+
+  .bioForm {
+    height: 35vh;
   }
 }
 
