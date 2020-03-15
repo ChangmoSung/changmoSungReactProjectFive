@@ -384,8 +384,8 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: calc(100% / 2 - 1.5rem);
-  min-height: 27rem;
+  width: 100%;
+  min-height: 23rem;
   margin-bottom: 3rem;
   padding: 1.5rem;
   border-radius: 2rem;
@@ -453,6 +453,10 @@ header {
   .galleryImage:nth-child(3n+2) {
     margin: 0 0 2rem;
   }
+
+  .bioForm {
+    width: 75%;
+  }
 }
 
 @media(max-width: 700px) {
@@ -498,11 +502,6 @@ header {
     width: 100%;
     min-height: 50rem;
   }
-
-  .bio,
-  .bioForm {
-    width: 100%;
-  }
 }
 
 @media(max-width: 550px) {
@@ -518,7 +517,7 @@ header {
   }
 
   .userInfo {
-    justify-content: space-evenly;
+    justify-content: flex-start;
   }
 
   .userInfo h1 {
@@ -529,17 +528,9 @@ header {
     text-align: center;
   }
 
-  .userInfo {
-    justify-content: center;
-  }
-
   .uploadAndSignOutButtons {
     align-items: center;
     flex-direction: column;
-  }
-
-  .uploadAndSignOutButtons label {
-    margin: 2rem 0;
   }
 
   .uploadAndSignOutButtons label,
@@ -547,9 +538,21 @@ header {
   .progressBar {
     height: 3rem;
   }
+
+  .uploadAndSignOutButtons label {
+    margin: 2rem 0;
+  }
+
+  .progressBar {
+    margin: 5rem 0 2rem;
+  }
 }
 
 @media(max-width: 414px) {
+  .signInAndUpButtons button {
+    width: 40%;
+  }
+
   header {
     height: 40vh;
   }
