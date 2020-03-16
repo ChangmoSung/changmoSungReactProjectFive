@@ -487,6 +487,11 @@ header {
   margin: 0 0 2rem;
 }
 
+.journal p {
+  font-size: 1.7rem;
+  line-height: 2.5rem;
+}
+
 .journal button,
 .journalForm button {
   width: 10rem;
