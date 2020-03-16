@@ -10,6 +10,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 html {
   font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
 }
 
 img {
@@ -366,6 +367,7 @@ header {
   left: 0;
   height: 90%;
   transition: all 0.3s;
+  object-fit: cover;
 }
 
 .galleryImage.enlarged {
