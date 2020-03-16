@@ -20,9 +20,9 @@ class Main extends Component {
         <div className='links'>
           <Link to="/changmoSungReactProjectFive/"><i className="far fa-image"></i></Link>
 
-          <Link to="/changmoSungReactProjectFive/video"><i className="fas fa-video"></i></Link>
+          <Link to="/changmoSungReactProjectFive/video/"><i className="fas fa-video"></i></Link>
           
-          <Link to='/changmoSungReactProjectFive/journal'><i className="fas fa-book"></i></Link>
+          <Link to='/changmoSungReactProjectFive/journal/'><i className="fas fa-book"></i></Link>
         </div>
 
         <ul className="wrapper">
@@ -42,7 +42,7 @@ class Main extends Component {
             })}
           </Route>
 
-          <Route path="/changmoSungReactProjectFive/video" exact>
+          <Route path="/changmoSungReactProjectFive/video/" exact>
             {this.props.userVideos.map((video, i) => {
               return (
                 <li key={i} className="galleryImage" tabIndex="0">
@@ -59,7 +59,7 @@ class Main extends Component {
             })}
           </Route>
 
-          <Route path="/changmoSungReactProjectFive/journal" component={Journal} />
+          <Route path="/changmoSungReactProjectFive/journal/" component={Journal} />
         </ul>
       </main>
     );
