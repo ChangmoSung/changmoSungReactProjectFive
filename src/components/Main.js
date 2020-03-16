@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-import Bio from "./Bio";
+import Journal from "./Journal";
 
 class Main extends Component {
   constructor() {
@@ -22,7 +22,7 @@ class Main extends Component {
 
           <Link to="/changmoSungReactProjectFive/video"><i className="fas fa-video"></i></Link>
           
-          <Link to='/changmoSungReactProjectFive/bio'><i className="fas fa-book"></i></Link>
+          <Link to='/changmoSungReactProjectFive/journal'><i className="fas fa-book"></i></Link>
         </div>
 
         <ul className="wrapper">
@@ -59,7 +59,7 @@ class Main extends Component {
             })}
           </Route>
 
-          <Route path="/changmoSungReactProjectFive/bio" component={Bio} />
+          <Route path="/changmoSungReactProjectFive/journal" component={Journal} />
         </ul>
       </main>
     );

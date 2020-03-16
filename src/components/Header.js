@@ -70,11 +70,14 @@ class Header extends Component {
             "state_changed",
             snapshot => {
                 //progress
-                this.state.progressSpan.current.classList.add('progress')
                 const progress = Math.round(
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 
                 this.setState({ progress });
+
+                this.state.progressSpan.current.classList.add('progress')
+
+                this.state.uploadEmoji.current.classList.add('emojiVisible')
             },
             error => {
                 //error
@@ -116,13 +119,11 @@ class Header extends Component {
                     }
                 });
 
-                this.state.uploadEmoji.current.classList.add('emojiVisible')
-
                 setTimeout(() => {
+                    this.state.uploadEmoji.current.classList.remove('emojiVisible')
+
                     this.state.progressSpan.current.classList.remove('progress')
                     this.setState({ progress: 0 })
-
-                    this.state.uploadEmoji.current.classList.remove('emojiVisible')
                 },4000)
             }
         );

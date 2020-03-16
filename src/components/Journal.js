@@ -8,9 +8,9 @@ class Bio extends Component {
             auth: firebase.auth(),
             database: firebase.firestore(),
             user: null,
-            userBios: [],
+            userJournals: [],
             title: React.createRef(),
-            bio: React.createRef(),
+            journal: React.createRef(),
         }
     }
 
@@ -21,51 +21,51 @@ class Bio extends Component {
                     user 
                 }, () => {
                     this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
-                        const userBios = [...this.state.userBios];
+                        const userJournals = [...this.state.userJournals];
 
                         const changes = snapshot.docChanges();
 
                         changes.forEach(change => {
-                            userBios.unshift(change.doc.data());
+                            userJournals.unshift(change.doc.data());
                         });
-                        this.setState({ userBios });
+                        this.setState({ userJournals });
                     })
                 });
             };
         });
     }
 
-    setBio = e => {
+    setJournal = e => {
         e.preventDefault();
 
         const uniqueId = this.state.database.collection(this.state.user.uid).doc().id;
 
         const title = this.state.title.current.value;
 
-        const bio = this.state.bio.current.value;
+        const journal = this.state.journal.current.value;
 
         this.state.database.collection(this.state.user.uid).doc(uniqueId).set({
             title: title,
-            bio: bio,
+            journal: journal,
             id: uniqueId,
         });
 
         this.state.title.current.value = '';
-        this.state.bio.current.value = '';
+        this.state.journal.current.value = '';
     }
 
-    deleteBio = (e) => {
+    deleteJournal = (e) => {
         const confirm = window.confirm('Are you sure you want to delete the bio?');
 
         if(confirm) {
             const uniqueId = e.target.parentNode.id;
     
             this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
-                const userBios = [...this.state.userBios];
+                const userJournals = [...this.state.userJournals];
     
-                const filteredBios = userBios.filter(bio => bio.id !== uniqueId);
+                const filteredJournals = userJournals.filter(journal => journal.id !== uniqueId);
     
-                this.setState({ userBios: filteredBios });
+                this.setState({ userJournals: filteredJournals });
             })
     
             this.state.database.collection(this.state.user.uid).doc(uniqueId).delete();
@@ -74,26 +74,26 @@ class Bio extends Component {
 
     render() { 
         return (
-            <div className='bioSection'>
-                <form onSubmit={this.setBio} className='bioForm'>
+            <div className='journalSection'>
+                <form onSubmit={this.setJournal} className='journalForm'>
                     <label htmlFor='title'>Title</label>
                     <input type='text' id='title' ref={this.state.title} required></input>
 
-                    <label htmlFor='bio'>Bio</label>
-                    <input type='textarea' id='bio' ref={this.state.bio} cols='10' required></input>
+                    <label htmlFor='journal'>Journal</label>
+                    <textarea id='journal' ref={this.state.journal} rows='5' required></textarea>
 
-                    <button>add to bio</button>
+                    <button>add</button>
                 </form>
 
-                <div className='bioContainer'>
-                    {this.state.userBios.map((bio, i) => {
+                <div className='journalContainer'>
+                    {this.state.userJournals.map((journal, i) => {
                         return (
-                            <div key={i} id={bio.id} className='bio'>
-                                <h3>{bio.title}</h3>
+                            <div key={i} id={journal.id} className='journal'>
+                                <h3>{journal.title}</h3>
 
-                                <p>{bio.bio}</p>
+                                <p>{journal.journal}</p>
 
-                                <button onClick={this.deleteBio}>Delete</button>
+                                <button onClick={this.deleteJournal}>Delete</button>
                             </div>
                         )
                     })}
