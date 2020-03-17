@@ -14,15 +14,20 @@ class Main extends Component {
     image.classList.toggle("enlarged");
   };
 
+  numOfUserJournals = (length) => {
+    this.props.journalIconClicked(length);
+  }
+
+
   render() {
     return (
       <main className="gallery">
         <div className='links'>
-          <Link to="/changmoSungReactProjectFive/"><i className="far fa-image"></i></Link>
+          <Link to="/changmoSungReactProjectFive/"><i className="far fa-image" onClick={this.props.imageIconClicked}></i></Link>
 
-          <Link to="/changmoSungReactProjectFive/video/"><i className="fas fa-video"></i></Link>
+          <Link to="/changmoSungReactProjectFive/video/"><i className="fas fa-video" onClick={this.props.videoIconClicked}></i></Link>
           
-          <Link to='/changmoSungReactProjectFive/journal/'><i className="fas fa-book"></i></Link>
+          <Link to='/changmoSungReactProjectFive/journal/'><i className="fas fa-book" onClick={this.props.journalIconClicked}></i></Link>
         </div>
 
         <ul className="wrapper">
@@ -59,7 +64,7 @@ class Main extends Component {
             })}
           </Route>
 
-          <Route path="/changmoSungReactProjectFive/journal/" component={Journal} />
+          <Route path="/changmoSungReactProjectFive/journal/" render={() => <Journal numOfUserJournals={this.numOfUserJournals} />} />
         </ul>
       </main>
     );

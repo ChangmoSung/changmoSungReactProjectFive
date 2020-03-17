@@ -28,7 +28,11 @@ class Bio extends Component {
                         changes.forEach(change => {
                             userJournals.unshift(change.doc.data());
                         });
-                        this.setState({ userJournals });
+                        this.setState({ userJournals }, () => {
+                            const userJournalsLength = this.state.userJournals.length;
+
+                            this.props.numOfUserJournals(userJournalsLength);
+                        });
                     })
                 });
             };
@@ -48,6 +52,10 @@ class Bio extends Component {
             title: title,
             journal: journal,
             id: uniqueId,
+        } ,() => {
+            const userJournalsLength = this.state.userJournals + 1;
+
+            this.props.numOfUserJournals(userJournalsLength);
         });
 
         this.state.title.current.value = '';
@@ -59,6 +67,7 @@ class Bio extends Component {
 
         if(confirm) {
             const uniqueId = e.target.parentNode.id;
+
     
             this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
                 const userJournals = [...this.state.userJournals];
@@ -66,8 +75,12 @@ class Bio extends Component {
                 const filteredJournals = userJournals.filter(journal => journal.id !== uniqueId);
     
                 this.setState({ userJournals: filteredJournals });
+
+                const userJournalsLength = filteredJournals.length;
+
+                this.props.numOfUserJournals(userJournalsLength);
             })
-    
+
             this.state.database.collection(this.state.user.uid).doc(uniqueId).delete();
         }
     }

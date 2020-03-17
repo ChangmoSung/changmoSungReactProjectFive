@@ -201,7 +201,17 @@ class Header extends Component {
 
                     <div className='uploadAndSignOutButtons'>
                         <p>
-                            <span>{this.props.userImages.length} posts</span>
+                            {/* <span>{this.props.userImages.length} posts</span> */}
+                            <span>
+                                {this.props.videoIconClicked 
+                                    ? `${this.props.userVideos.length} video(s)` 
+                                    : (
+                                        this.props.journalIconClicked 
+                                        ? `${this.props.journalLength} journal(s)` 
+                                        : `${this.props.userImages.length} image(s)`
+                                    )
+                                }
+                            </span>
                         </p>
 
                         <label htmlFor="fileUpload"><span>upload</span><span role='img' aria-label='heart emoji' ref ={this.state.uploadEmoji}className='uploadEmoji'>😍</span></label>

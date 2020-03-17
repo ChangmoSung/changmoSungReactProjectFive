@@ -228,7 +228,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 13rem;
+  width: 14rem;
   font-size: 2rem;
   margin: 0;
 }
@@ -601,7 +601,7 @@ header {
 
   .uploadAndSignOutButtons p {
     font-size: 1.7rem;
-    width: 11rem;
+    width: 12rem;
   }
 
   .uploadAndSignOutButtons label,

@@ -17,6 +17,9 @@ class App extends Component {
       userImages: [],
       userVideos: [],
       profileImage: null,
+      videoIconClicked: false,
+      journalIconClicked: false,
+      journalLength: 0,
     };
   }
 
@@ -124,6 +127,29 @@ class App extends Component {
     }
   };
 
+  imageIconClicked = () => {
+    this.setState({
+      videoIconClicked: false,
+      journalIconClicked: false,
+    })
+  }
+
+  videoIconClicked = () => {
+    this.setState({
+      videoIconClicked: true,
+      journalIconClicked: false,
+    })
+  }
+
+  journalIconClicked = (length) => {
+    this.setState({
+      videoIconClicked: false,
+      journalIconClicked: true,
+      journalLength: length
+    })
+  }
+
+
   render() {
     return (
       <Router>
@@ -134,9 +160,13 @@ class App extends Component {
                 <Header
                   user={this.state.user}
                   userImages={this.state.userImages}
+                  userVideos={this.state.userVideos}
                   profileImage={this.state.profileImage}
                   userUploadedImageToDisplay={this.userUploadedImageToDisplay}
                   userUploadedVideoToDisplay={this.userUploadedVideoToDisplay}
+                  videoIconClicked={this.state.videoIconClicked}
+                  journalIconClicked={this.state.journalIconClicked}
+                  journalLength={this.state.journalLength}
                 />
 
                 <Main
@@ -144,6 +174,9 @@ class App extends Component {
                   userVideos={this.state.userVideos}
                   deleteImage={this.deleteImage}
                   deleteVideo={this.deleteVideo}
+                  imageIconClicked={this.imageIconClicked}
+                  videoIconClicked={this.videoIconClicked}
+                  journalIconClicked={this.journalIconClicked}
                 />
               </div>
             ) : (
