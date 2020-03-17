@@ -59,6 +59,7 @@ h2 {
   font-weight: bold;
   background: linear-gradient(319deg, #6FB1FC, #4364F7, #0052D4); 
   border-radius: 1rem;
+  transition: all 0.3s;
 }
 
 .testModeButton:hover {
@@ -122,7 +123,7 @@ h2 {
   cursor: pointer;
   border-radius: 1rem;
   text-transform: uppercase;
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 
 .signUpPageButton:hover {
@@ -696,5 +697,17 @@ header {
 
   .journalForm {
     height: 60vh;
+  }
+}
+
+@media(max-width: 375px) {
+  .userInfo h1 {
+    font-size: 2.45rem;
+  }
+
+  .uploadAndSignOutButtons p,
+  .uploadAndSignOutButtons label,
+  .signOut {
+    font-size: 1.5rem;
   }
 }
