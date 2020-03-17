@@ -12,14 +12,25 @@ class LandingPage extends Component {
             signInPassword: React.createRef(),
             signUpEmail: React.createRef(),
             signUpPassword: React.createRef(),
+            testMode: false,
+            testModeEmail: null,
+            testModePassword: null,
         };
     }
 
     signIn = (e) => {
-        e.preventDefault();
+        let email;
+        let password;
 
-        const email = this.state.signInEmail.current.value;
-        const password = this.state.signInPassword.current.value;
+        if(this.state.testMode) {
+            email = 'hirechangmo@gmail.com';
+            password = 'hirechangmo';
+        } else {
+            e.preventDefault();
+
+            email = this.state.signInEmail.current.value;
+            password = this.state.signInPassword.current.value;
+        }
 
         const promise = this.state.auth.signInWithEmailAndPassword(email, password);
 
@@ -55,15 +66,23 @@ class LandingPage extends Component {
         })
     }
 
+    testMode = () => {
+        this.setState({ 
+            testMode: true,
+            testModeEmail: 'hirechangmo0914@gmail.com',
+            testModePassword: 'hirechangmo',
+         }, () => { this.signIn() })
+    }
+
 
     render() {
         return (
             <div className='landingPage'>
-                <h2>
-                    If you don't want to sign up, please use this test mode account 
-                    <span> Email: hirechangmo@gmail.com</span>
-                    <span> Password: hirechangmo</span>
-                </h2>
+                <div className='testMode'>
+                    <h2>try this test mode!</h2>
+
+                    <button className='testModeButton' onClick={this.testMode}>test mode</button>
+                </div>
 
                 {this.state.signUpButtonClicked
                 ? 

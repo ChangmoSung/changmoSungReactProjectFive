@@ -22,7 +22,6 @@ class App extends Component {
 
   componentDidMount() {
     this.state.auth.onAuthStateChanged(user => {
-      console.log(user)
       if (user) {
         this.setState({ user }, () => {
           const userImages = [...this.state.userImages];

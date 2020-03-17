@@ -204,7 +204,7 @@ class Header extends Component {
                             <span>{this.props.userImages.length} posts</span>
                         </p>
 
-                        <label htmlFor="fileUpload"><span>upload</span><span ref ={this.state.uploadEmoji}className='uploadEmoji'>😍</span></label>
+                        <label htmlFor="fileUpload"><span>upload</span><span role='img' aria-label='heart emoji' ref ={this.state.uploadEmoji}className='uploadEmoji'>😍</span></label>
                         <input
                             id="fileUpload"
                             type="file"
