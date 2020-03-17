@@ -214,7 +214,7 @@ header {
 }
 
 .userInfo h1 {
-  font-size: 3.3rem;
+  font-size: 3rem;
   margin: 0;
 }
 
@@ -229,7 +229,7 @@ header {
   justify-content: center;
   align-items: center;
   width: 14rem;
-  font-size: 2rem;
+  font-size: 1.9rem;
   margin: 0;
 }
 
@@ -629,7 +629,7 @@ header {
   }
 }
 
-@media(max-width: 550px) {
+@media(max-width: 580px) {
   .signInForm,
   .signUpForm {
     width: 100%;
@@ -673,7 +673,7 @@ header {
   }
 }
 
-@media(max-width: 414px) {
+@media(max-width: 430px) {
   header {
     height: 40vh;
   }

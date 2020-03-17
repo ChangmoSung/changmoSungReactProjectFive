@@ -201,15 +201,22 @@ class Header extends Component {
 
                     <div className='uploadAndSignOutButtons'>
                         <p>
-                            {/* <span>{this.props.userImages.length} posts</span> */}
                             <span>
-                                {this.props.videoIconClicked 
-                                    ? `${this.props.userVideos.length} video(s)` 
-                                    : (
-                                        this.props.journalIconClicked 
-                                        ? `${this.props.journalLength} journal(s)` 
-                                        : `${this.props.userImages.length} image(s)`
-                                    )
+                                {this.props.videoIconClicked
+                                    ? this.props.userVideos.length > 1
+                                        ? `${this.props.userVideos.length} videos`
+                                        : `${this.props.userVideos.length} video`
+
+                                    : this.props.journalIconClicked
+                                            ? typeof this.props.journalLength === 'number'
+                                                ? this.props.journalLength > 1
+                                                    ? `${this.props.journalLength} journals`
+                                                    : `${this.props.journalLength} journal`
+                                                : '0 journal'
+                                                
+                                    : this.props.userImages.length > 1
+                                        ? `${this.props.userImages.length} images`
+                                        : `${this.props.userImages.length} image`
                                 }
                             </span>
                         </p>

@@ -14,10 +14,6 @@ class Main extends Component {
     image.classList.toggle("enlarged");
   };
 
-  numOfUserJournals = (length) => {
-    this.props.journalIconClicked(length);
-  }
-
 
   render() {
     return (
@@ -64,7 +60,7 @@ class Main extends Component {
             })}
           </Route>
 
-          <Route path="/changmoSungReactProjectFive/journal/" render={() => <Journal numOfUserJournals={this.numOfUserJournals} />} />
+          <Route path="/changmoSungReactProjectFive/journal/" render={() => <Journal journalIconClicked={this.props.journalIconClicked} />} />
         </ul>
       </main>
     );

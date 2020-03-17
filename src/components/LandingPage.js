@@ -23,7 +23,7 @@ class LandingPage extends Component {
         let password;
 
         if(this.state.testMode) {
-            email = 'hirechangmo@gmail.com';
+            email = 'changmosung0914@gmail.com';
             password = 'hirechangmo';
         } else {
             e.preventDefault();
@@ -69,9 +69,7 @@ class LandingPage extends Component {
     testMode = () => {
         this.setState({ 
             testMode: true,
-            testModeEmail: 'hirechangmo0914@gmail.com',
-            testModePassword: 'hirechangmo',
-         }, () => { this.signIn() })
+        }, () => this.signIn())
     }
 
 
