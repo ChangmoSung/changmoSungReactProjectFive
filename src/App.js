@@ -114,7 +114,6 @@ class App extends Component {
   };
 
   deleteVideo = e => {
-
     if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
       const confirm = window.confirm("are you sure?");
   
@@ -148,7 +147,7 @@ class App extends Component {
     })
   }
 
-  journalIconClicked = (length) => {
+  journalIconClicked = length => {
     this.setState({
       videoIconClicked: false,
       journalIconClicked: true,
@@ -160,10 +159,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
           <Route path="/changmoSungReactProjectFive/">
             {this.state.user ? (
-              <div className='root'>
+              <div>
                 <Header
                   user={this.state.user}
                   userImages={this.state.userImages}
@@ -190,7 +188,6 @@ class App extends Component {
               <LandingPage />
             )}
           </Route>
-        </div>
       </Router>
     );
   }

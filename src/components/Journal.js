@@ -63,7 +63,7 @@ class Bio extends Component {
         this.state.journal.current.value = '';
     }
 
-    deleteJournal = (e) => {
+    deleteJournal = e => {
         const confirm = window.confirm('Are you sure you want to delete the bio?');
 
         if(confirm) {

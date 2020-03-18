@@ -352,7 +352,7 @@ header {
   }
 
   50% {
-    width: 5%;
+    width: 2%;
   }
 
   100% {
@@ -378,40 +378,40 @@ header {
 }
 
 .links {
-  width: 100%;
-  max-width: 100rem;
-  height: 4vh;
   display: flex;
   justify-content: space-around;
+  width: 100%;
+  max-width: 100rem;
+  height: 7vh;
   margin: 2.5rem auto 5rem;
-  font-size: 2rem;
 }
 
 .links a {
-  font-size: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
-  text-align: center;
+  border: 0.2rem solid #0072ff;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  max-width: 18rem;
+  width: 28%;
+  font-size: 4rem;
   color: #0072ff;
   transition: all 0.3s;
-  animation: links 2s ease-in-out infinite;
+}
+
+.links i {
+  transition: all 0.3s;
+}
+
+.links a:hover i,
+.links i:focus {
+  transform: scale(1.2);
 }
 
 .links a:hover {
-  color: #00c6ff;
-}
-
-@keyframes links {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .galleryImage {

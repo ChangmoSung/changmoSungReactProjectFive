@@ -18,7 +18,7 @@ class LandingPage extends Component {
         };
     }
 
-    signIn = (e) => {
+    signIn = e => {
         let email;
         let password;
 
@@ -40,7 +40,7 @@ class LandingPage extends Component {
         });
     }
 
-    signUp = (e) => {
+    signUp = e => {
         e.preventDefault();
         
         const email = this.state.signUpEmail.current.value;

@@ -24,11 +24,11 @@ class Main extends Component {
     return (
       <main className="gallery">
         <div className='links'>
-          <Link to="/changmoSungReactProjectFive/"><i className="far fa-image" tabIndex='0' onClick={this.props.imageIconClicked}></i></Link>
+          <Link to="/changmoSungReactProjectFive/" onClick={this.props.imageIconClicked}><i className="far fa-image" tabIndex='0'></i></Link>
 
-          <Link to="/changmoSungReactProjectFive/video/"><i className="fas fa-video" tabIndex='0' onClick={this.props.videoIconClicked}></i></Link>
+          <Link to="/changmoSungReactProjectFive/video/" onClick={this.props.videoIconClicked}><i className="fas fa-video" tabIndex='0'></i></Link>
           
-          <Link to='/changmoSungReactProjectFive/journal/'><i className="fas fa-book" tabIndex='0' onClick={this.props.journalIconClicked}></i></Link>
+          <Link to='/changmoSungReactProjectFive/journal/' onClick={this.props.journalIconClicked}><i className="fas fa-book" tabIndex='0'></i></Link>
         </div>
 
         <ul className="wrapper">
