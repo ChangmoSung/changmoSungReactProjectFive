@@ -5,16 +5,24 @@ import Journal from "./Journal";
 class Main extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      selectedImage: React.createRef(),
+    };
   }
 
   enlargeImage = e => {
-    const image = e.target;
-    
+    const image = e.target.parentNode;
+
+    image.classList.toggle("enlarged");
+  };
+
+  enlargeImageWithEnter = (e) => {
     if(e.keyCode === 13) {
+      const image = e.target;
+
       image.classList.toggle("enlarged");
     }
-  };
+  }
 
 
   render() {
@@ -32,14 +40,14 @@ class Main extends Component {
           <Route path="/changmoSungReactProjectFive/" exact>
             {this.props.userImages.map((image, i) => {
               return (
-                <li key={i} className="galleryImage" tabIndex='0' onClick={this.enlargeImage}>
+                <button key={i} className="galleryImage" onClick={this.enlargeImage} onKeyDown={this.enlargeImageWithEnter}>
                   <img
                     src={image}
                     alt="user uploaded item"
                   ></img>
 
                   <button onClick={this.props.deleteImage}>delete</button>
-                </li>
+                </button>
               );
             })}
           </Route>
@@ -47,7 +55,7 @@ class Main extends Component {
           <Route path="/changmoSungReactProjectFive/video/" exact>
             {this.props.userVideos.map((video, i) => {
               return (
-                <li key={i} className="galleryImage">
+                <button key={i} className="galleryImage">
                   <video
                     src={video}
                     alt="user uploaded item"
@@ -57,7 +65,7 @@ class Main extends Component {
                   ></video>
 
                   <button onClick={this.props.deleteVideo}>delete</button>
-                </li>
+                </button>
               );
             })}
           </Route>

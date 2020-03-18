@@ -414,7 +414,6 @@ header {
   }
 }
 
-
 .galleryImage {
   position: relative;
   width: calc(100% / 3 - 1.34rem);
@@ -422,6 +421,7 @@ header {
   border-radius: 1rem;
   overflow: hidden;
   margin-bottom: 2rem;
+  border: none;
 }
 
 .galleryImage:nth-child(3n+2) {
@@ -438,6 +438,11 @@ header {
   object-fit: cover;
 }
 
+.galleryImage:hover img,
+.galleryImage:focus img {
+  transform: scale(1.2);
+}
+
 .galleryImage.enlarged {
   position: fixed;
   width: 100vw;
@@ -450,18 +455,8 @@ header {
   background: white;
 }
 
-.galleryImage.enlarged img,
-.galleryImage.enlarged video {
+.galleryImage.enlarged img {
   object-fit: contain;
-}
-
-.galleryImage:hover img,
-.galleryImage:hover img {
-  transform: scale(1.2);
-}
-
-.galleryImage.enlarged:hover img {
-  transform: scale(1);
 }
 
 .galleryImage button {

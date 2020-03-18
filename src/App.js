@@ -92,6 +92,8 @@ class App extends Component {
   };
 
   deleteImage = e => {
+    e.stopPropagation();
+
     const confirm = window.confirm("Are you sure you want to delete the image?");
 
     if (confirm) {

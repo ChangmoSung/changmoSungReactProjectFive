@@ -216,9 +216,9 @@ class Header extends Component {
                                                     : `${this.props.journalLength} journal`
                                                 : '0 journal'
                                                 
-                                    : this.props.userImages.length > 1
-                                        ? `${this.props.userImages.length} images`
-                                        : `${this.props.userImages.length} image`
+                                : this.props.userImages.length > 1
+                                    ? `${this.props.userImages.length} images`
+                                    : `${this.props.userImages.length} image`
                                 }
                             </span>
                         </p>
