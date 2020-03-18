@@ -97,15 +97,15 @@ class App extends Component {
     if (confirm) {
       const userImages = [...this.state.userImages];
 
-      const userDeletedImage = e.target.parentNode.childNodes[0].currentSrc;
+      const deletedImage = e.target.parentNode.childNodes[0].currentSrc;
 
       const filteredUserImages = userImages.filter(
-        image => image !== userDeletedImage
+        image => image !== deletedImage
       );
 
       this.setState({ userImages: filteredUserImages });
 
-      this.state.storage.refFromURL(userDeletedImage).delete();
+      this.state.storage.refFromURL(deletedImage).delete();
     }
   };
 
@@ -115,15 +115,15 @@ class App extends Component {
     if (confirm) {
       const userVideos = [...this.state.userVideos];
 
-      const userDeletedVideo = e.target.parentNode.childNodes[0].currentSrc;
+      const deletedVideo = e.target.parentNode.childNodes[0].currentSrc;
 
       const filteredUserVideos = userVideos.filter(
-        video => video !== userDeletedVideo
+        video => video !== deletedVideo
       );
 
       this.setState({ userVideos: filteredUserVideos });
 
-      this.state.storage.refFromURL(userDeletedVideo).delete();
+      this.state.storage.refFromURL(deletedVideo).delete();
     }
   };
 

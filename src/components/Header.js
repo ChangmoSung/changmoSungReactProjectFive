@@ -56,15 +56,15 @@ class Header extends Component {
         let uploadTask;
 
         uploadTask = this.state.storage
-        .ref(
-            this.state.upload
-                ? this.state.galleryImageUploaded
-                    ? `${this.props.user.uid}-galleryImages/${uniqueId}`
-                    : `${this.props.user.uid}-galleryVideos/${uniqueId}`
+            .ref(
+                this.state.upload
+                    ? this.state.galleryImageUploaded
+                        ? `${this.props.user.uid}-galleryImages/${uniqueId}`
+                        : `${this.props.user.uid}-galleryVideos/${uniqueId}`
 
-                : `${this.props.user.uid}-profileImage/profileImage`
-        )
-        .put(imageToUpload);
+                    : `${this.props.user.uid}-profileImage/profileImage`
+            )
+            .put(imageToUpload);
 
         uploadTask.on(
             "state_changed",
@@ -148,6 +148,7 @@ class Header extends Component {
         }
     }
 
+
   render() {
     return (
         <header>
@@ -156,17 +157,18 @@ class Header extends Component {
                     {this.props.profileImage 
                         ? 
                             <div>
-                                <label htmlFor="profileImageUpload">
-                                    <img
-                                        src={this.state.profileImage ? this.state.profileImage : this.props.profileImage}
-                                        alt="profile"
-                                    ></img>
-                                </label>
                                 <input
                                     id="profileImageUpload"
                                     type="file"
                                     onChange={this.uploadProfileImage}
                                 ></input>
+
+                                <label htmlFor="profileImageUpload">
+                                    <img
+                                        src={this.state.profileImage ? this.state.profileImage : this.props.profileImage}
+                                        alt="user profile"
+                                    ></img>
+                                </label>
                             </div>
                         : 
                             <div>
@@ -175,7 +177,7 @@ class Header extends Component {
                                     ? 
                                         <img
                                             src={this.state.profileImage}
-                                            alt="profile"
+                                            alt="user profile"
                                         ></img> 
                                     : 
                                         <span>
@@ -221,14 +223,22 @@ class Header extends Component {
                             </span>
                         </p>
 
-                        <label htmlFor="fileUpload"><span>upload</span><span role='img' aria-label='heart emoji' ref ={this.state.uploadEmoji}className='uploadEmoji'>😍</span></label>
                         <input
                             id="fileUpload"
                             type="file"
                             onChange={this.uploadGallery}
                         ></input>
 
-                        <Link to='/changmoSungReactProjectFive/' onClick={this.signOut} className='signOut' ><span>sign out</span></Link>
+                        <label htmlFor="fileUpload">
+                            <span>upload</span>
+
+                            <span role='img' aria-label='heart emoji' ref ={this.state.uploadEmoji}className='uploadEmoji'>😍</span>
+                        </label>
+
+
+                        <Link to='/changmoSungReactProjectFive/' className='signOutLink' onClick={this.signOut}>
+                            <span className='signOut' tabIndex='0'>sign out</span>
+                        </Link>
                     </div>
                 </div>
             </div>

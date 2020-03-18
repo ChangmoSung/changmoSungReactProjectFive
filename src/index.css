@@ -62,9 +62,11 @@ h2 {
   transition: all 0.3s;
 }
 
-.testModeButton:hover {
+.testModeButton:hover,
+.testModeButton:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
+  outline: 1px dotted black;
 }
 
 .signInForm,
@@ -126,9 +128,11 @@ h2 {
   transition: all 0.3s;
 }
 
-.signUpPageButton:hover {
+.signUpPageButton:hover,
+.signUpPageButton:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
+  outline: 1px dotted black;
 }
 
 .signInAndUpButtons {
@@ -149,9 +153,11 @@ h2 {
   transition: all 0.2s;
 }
 
-.signInAndUpButtons button:hover {
+.signInAndUpButtons button:hover,
+.signInAndUpButtons button:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
+  outline: 1px dotted black;
 }
 
 /* ------------------------ */
@@ -193,6 +199,10 @@ header {
   height: 0.1px;
 }
 
+.profileImage input:focus + label {
+  outline: 1px dotted black;
+}
+
 .profileImage .uploadImageText {
   display: flex;
   justify-content: center;
@@ -229,14 +239,12 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14rem;
   font-size: 1.9rem;
   margin: 0;
 }
 
 .uploadAndSignOutButtons input {
-  width: 0.1px;
-	height: 0.1px;
+  position: absolute;
 	opacity: 0;
 	z-index: -1;
 }
@@ -256,16 +264,21 @@ header {
   transition: all 0.2s;
 }
 
-.uploadAndSignOutButtons label:hover {
+.uploadAndSignOutButtons label:hover,
+.uploadAndSignOutButtons input:focus + label {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
+  outline: 1px dotted black;
+}
+
+.signOutLink {
+  text-decoration: none;
 }
 
 .signOut {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
   width: 13rem;
   height: 3.7rem;
   font-size: 1.7rem;
@@ -277,9 +290,11 @@ header {
   transition: all 0.2s;
 }
 
-.signOut:hover {
+.signOut:hover,
+.signOut:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
+  outline: 1px dotted black;
 }
 
 .uploadEmoji {
@@ -445,7 +460,7 @@ header {
   transform: scale(1.2);
 }
 
-.galleryImage.enlarged:hover img{
+.galleryImage.enlarged:hover img {
   transform: scale(1);
 }
 
@@ -462,8 +477,10 @@ header {
   font-size: 1.8rem;
 }
 
-.galleryImage button:hover {
+.galleryImage button:hover,
+.galleryImage button:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
+  outline: 1px dotted black;
 }
 
 /* ------------------- */
@@ -547,9 +564,12 @@ header {
 }
 
 .journalForm button:hover,
-.journal button:hover {
+.journalForm button:focus,
+.journal button:hover,
+.journal button:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
+  outline: 1px dotted black;
 }
 
 
