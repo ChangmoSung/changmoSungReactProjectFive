@@ -60,10 +60,12 @@ class LandingPage extends Component {
         })
     }
 
-    signUpPopUp = () => {
-        this.setState({
-            signUpButtonClicked: !this.state.signUpButtonClicked,
-        })
+    toggleSignUpPage = e => {
+        if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
+            this.setState({
+                signUpButtonClicked: !this.state.signUpButtonClicked,
+            })
+        }
     }
 
     testMode = () => {
@@ -93,7 +95,7 @@ class LandingPage extends Component {
 
                         <button className='signUpPageButton'>sign up</button>
 
-                        <span onClick={this.signUpPopUp}>X</span>
+                        <span tabIndex='0' onKeyDown={this.toggleSignUpPage} onClick={this.toggleSignUpPage}>X</span>
                     </form>
                 : 
                     <form className='signInForm' onSubmit={this.signIn}>
@@ -107,7 +109,7 @@ class LandingPage extends Component {
                         <div className='signInAndUpButtons'>
                             {this.state.signUpButtonClicked ? null : <button>sign in</button>}
 
-                            {!this.state.signUpButtonClicked ? <button onClick={this.signUpPopUp}>sign up</button> : null}
+                            {!this.state.signUpButtonClicked ? <button onClick={this.toggleSignUpPage}>sign up</button> : null}
                         </div>
                     </form>}
             </div>

@@ -94,38 +94,43 @@ class App extends Component {
   deleteImage = e => {
     e.stopPropagation();
 
-    const confirm = window.confirm("Are you sure you want to delete the image?");
-
-    if (confirm) {
-      const userImages = [...this.state.userImages];
-
-      const deletedImage = e.target.parentNode.childNodes[0].currentSrc;
-
-      const filteredUserImages = userImages.filter(
-        image => image !== deletedImage
-      );
-
-      this.setState({ userImages: filteredUserImages });
-
-      this.state.storage.refFromURL(deletedImage).delete();
+    if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
+      const confirm = window.confirm("Are you sure you want to delete the image?");
+  
+      if (confirm) {
+        const userImages = [...this.state.userImages];
+  
+        const deletedImage = e.target.parentNode.childNodes[0].currentSrc;
+  
+        const filteredUserImages = userImages.filter(
+          image => image !== deletedImage
+        );
+  
+        this.setState({ userImages: filteredUserImages });
+  
+        this.state.storage.refFromURL(deletedImage).delete();
+      }
     }
   };
 
   deleteVideo = e => {
-    const confirm = window.confirm("are you sure?");
 
-    if (confirm) {
-      const userVideos = [...this.state.userVideos];
-
-      const deletedVideo = e.target.parentNode.childNodes[0].currentSrc;
-
-      const filteredUserVideos = userVideos.filter(
-        video => video !== deletedVideo
-      );
-
-      this.setState({ userVideos: filteredUserVideos });
-
-      this.state.storage.refFromURL(deletedVideo).delete();
+    if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
+      const confirm = window.confirm("are you sure?");
+  
+      if (confirm) {
+        const userVideos = [...this.state.userVideos];
+  
+        const deletedVideo = e.target.parentNode.childNodes[0].currentSrc;
+  
+        const filteredUserVideos = userVideos.filter(
+          video => video !== deletedVideo
+        );
+  
+        this.setState({ userVideos: filteredUserVideos });
+  
+        this.state.storage.refFromURL(deletedVideo).delete();
+      }
     }
   };
 
