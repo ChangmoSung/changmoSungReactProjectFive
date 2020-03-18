@@ -9,9 +9,10 @@ class Bio extends Component {
             database: firebase.firestore(),
             user: null,
             userJournals: [],
-            title: React.createRef(),
-            journal: React.createRef(),
         }
+        
+        this.title = React.createRef();
+        this.journal = React.createRef();
     }
 
     componentDidMount() {
@@ -45,9 +46,9 @@ class Bio extends Component {
 
         const uniqueId = this.state.database.collection(this.state.user.uid).doc().id;
 
-        const title = this.state.title.current.value;
+        const title = this.title.current.value;
 
-        const journal = this.state.journal.current.value;
+        const journal = this.journal.current.value;
 
         this.state.database.collection(this.state.user.uid).doc(uniqueId).set({
             title: title,
@@ -59,8 +60,8 @@ class Bio extends Component {
             this.props.journalIconClicked(userJournalsLength);
         });
 
-        this.state.title.current.value = '';
-        this.state.journal.current.value = '';
+        this.title.current.value = '';
+        this.journal.current.value = '';
     }
 
     deleteJournal = e => {
@@ -91,10 +92,10 @@ class Bio extends Component {
             <div className='journalSection'>
                 <form onSubmit={this.setJournal} className='journalForm'>
                     <label htmlFor='title'>Title</label>
-                    <input type='text' id='title' ref={this.state.title} required></input>
+                    <input type='text' id='title' ref={this.title} required></input>
 
                     <label htmlFor='journal'>Journal</label>
-                    <textarea id='journal' ref={this.state.journal} rows='5' required></textarea>
+                    <textarea id='journal' ref={this.journal} rows='5' required></textarea>
 
                     <button>add</button>
                 </form>

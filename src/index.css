@@ -395,7 +395,8 @@ header {
   border-radius: 1rem;
   transition: all 0.3s;
   max-width: 18rem;
-  width: 28%;
+  width: 27%;
+  height: 6.2rem;
   font-size: 4rem;
   color: #0072ff;
   transition: all 0.3s;
@@ -694,7 +695,7 @@ header {
 
 @media(max-width: 430px) {
   header {
-    height: 40vh;
+    min-height: 28rem;
   }
 
   .headerFlexContainer {
@@ -706,7 +707,7 @@ header {
   }
 
   .userInfo h1 {
-    top: 37%;
+    top: 24.7rem;
   }
 
   .galleryImage {

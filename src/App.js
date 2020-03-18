@@ -93,14 +93,13 @@ class App extends Component {
 
   deleteImage = e => {
     e.stopPropagation();
-
     if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
       const confirm = window.confirm("Are you sure you want to delete the image?");
   
       if (confirm) {
         const userImages = [...this.state.userImages];
   
-        const deletedImage = e.target.parentNode.childNodes[0].currentSrc;
+        const deletedImage = e.target.previousSibling.currentSrc;
   
         const filteredUserImages = userImages.filter(
           image => image !== deletedImage
@@ -120,7 +119,7 @@ class App extends Component {
       if (confirm) {
         const userVideos = [...this.state.userVideos];
   
-        const deletedVideo = e.target.parentNode.childNodes[0].currentSrc;
+        const deletedVideo = e.target.previousSibling.currentSrc;
   
         const filteredUserVideos = userVideos.filter(
           video => video !== deletedVideo
