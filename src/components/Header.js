@@ -27,6 +27,7 @@ class Header extends Component {
             alert('For profile, you can only upload image')
         } else {
             this.setState({
+                upload: true,
                 profileImageUploaded: true,
                 profileImage: e.target.files[0]
             },() => this.upload(this.state.profileImage));
@@ -58,11 +59,12 @@ class Header extends Component {
         uploadTask = this.state.storage
             .ref(
                 this.state.upload
-                    ? this.state.galleryImageUploaded
-                        ? `${this.props.user.uid}-galleryImages/${uniqueId}`
-                        : `${this.props.user.uid}-galleryVideos/${uniqueId}`
-
-                    : `${this.props.user.uid}-profileImage/profileImage`
+                    ? this.state.profileImageUploaded
+                        ? `${this.props.user.uid}-profileImage/profileImage`
+                        : this.state.galleryImageUploaded
+                            ? `${this.props.user.uid}-galleryImages/${uniqueId}`
+                            : `${this.props.user.uid}-galleryVideos/${uniqueId}`
+                : null
             )
             .put(imageToUpload);
 
@@ -88,18 +90,19 @@ class Header extends Component {
                 this.state.storage
                 .ref(
                     this.state.upload
-                    ? this.state.galleryImageUploaded
-                        ? `${this.props.user.uid}-galleryImages`
-                        : `${this.props.user.uid}-galleryVideos`
-
-                    : `${this.props.user.uid}-profileImage`
+                        ? this.state.profileImageUploaded
+                            ? `${this.props.user.uid}-profileImage`
+                            : this.state.galleryImageUploaded
+                                ? `${this.props.user.uid}-galleryImages`
+                                : `${this.props.user.uid}-galleryVideos`
+                    : null
                 )
                 .child(
                     this.state.upload
-                    ? this.state.galleryImageUploaded
-                        ? `${uniqueId}`
-                        : `${uniqueId}`
-                    : 'profileImage'
+                        ? this.state.profileImageUploaded
+                            ? 'profileImage'
+                            : `${uniqueId}`
+                    : null
                 )
                 .getDownloadURL()
                 .then(url => {

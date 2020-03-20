@@ -27,22 +27,16 @@ class App extends Component {
     this.state.auth.onAuthStateChanged(user => {
       if (user) {
         this.setState({ user }, () => {
-          const userImages = [...this.state.userImages];
-
-          const userVideos = [...this.state.userVideos];
-
           this.state.storage
             .ref()
             .child(`${this.state.user.uid}-galleryImages`)
             .listAll()
             .then(res => {
-              res.items.map(item => {
-                item.getDownloadURL().then(url => {
-                  userImages.push(url);
-
-                  this.setState({ userImages });
-                });
-              });
+              Promise.all(
+                res.items.map(item => {
+                  return item.getDownloadURL();
+                })
+              ).then(userImages => this.setState({ userImages }))
             });
 
           this.state.storage
@@ -50,13 +44,11 @@ class App extends Component {
             .child(`${this.state.user.uid}-galleryVideos`)
             .listAll()
             .then(res => {
-              res.items.map(item => {
-                item.getDownloadURL().then(url => {
-                  userVideos.push(url);
-
-                  this.setState({ userVideos });
-                });
-              });
+              Promise.all(
+                res.items.map(item => {
+                  return item.getDownloadURL();
+                })
+              ).then(userVideos => this.setState({ userVideos }))
             });
 
           this.state.storage
@@ -64,11 +56,11 @@ class App extends Component {
             .child(`${this.state.user.uid}-profileImage`)
             .listAll()
             .then(res => {
-              res.items.map(item => {
-                item.getDownloadURL().then(url => {
-                  this.setState({ profileImage: url });
-                });
-              });
+              Promise.all(
+                res.items.map(item => {
+                  return item.getDownloadURL();
+                })
+              ).then(profileImage => this.setState({ profileImage }))
             });
         });
       }
@@ -99,7 +91,7 @@ class App extends Component {
       if (confirm) {
         const userImages = [...this.state.userImages];
   
-        const deletedImage = e.target.previousSibling.currentSrc;
+        const deletedImage = e.target.parentNode.childNodes[0].currentSrc;
   
         const filteredUserImages = userImages.filter(
           image => image !== deletedImage
@@ -119,7 +111,7 @@ class App extends Component {
       if (confirm) {
         const userVideos = [...this.state.userVideos];
   
-        const deletedVideo = e.target.previousSibling.currentSrc;
+        const deletedVideo = e.target.parentNode.childNodes[0].currentSrc;
   
         const filteredUserVideos = userVideos.filter(
           video => video !== deletedVideo
