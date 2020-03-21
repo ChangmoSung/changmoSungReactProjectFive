@@ -458,6 +458,7 @@ header {
 
 .galleryImage.enlarged img {
   object-fit: contain;
+  transform: scale(1);
 }
 
 .galleryImage div {
