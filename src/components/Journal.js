@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from "./firebase";
 
-class Bio extends Component {
+class Journal extends Component {
     constructor() {
         super();
         this.state = {
@@ -95,7 +95,7 @@ class Bio extends Component {
 
                                 <p>{journal.journal}</p>
 
-                                <button onClick={this.deleteJournal}>Delete</button>
+                                <button onClick={this.deleteJournal}>delete</button>
                             </div>
                         )
                     })}
@@ -105,4 +105,4 @@ class Bio extends Component {
     }
 }
  
-export default Bio;
+export default Journal;

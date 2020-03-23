@@ -60,10 +60,10 @@ class Header extends Component {
             .ref(
                 this.state.upload
                     ? this.state.profileImageUploaded
-                        ? `${this.props.user.uid}-profileImage/profileImage`
+                        ? `${this.props.user.uid}/profileImage`
                         : this.state.galleryImageUploaded
-                            ? `${this.props.user.uid}-galleryImages/${uniqueId}`
-                            : `${this.props.user.uid}-galleryVideos/${uniqueId}`
+                            ? `${this.props.user.uid}/${uniqueId}-galleryImage`
+                            : `${this.props.user.uid}/${uniqueId}-galleryVideo`
                 : null
             )
             .put(imageToUpload);
@@ -91,17 +91,19 @@ class Header extends Component {
                 .ref(
                     this.state.upload
                         ? this.state.profileImageUploaded
-                            ? `${this.props.user.uid}-profileImage`
+                            ? `${this.props.user.uid}`
                             : this.state.galleryImageUploaded
-                                ? `${this.props.user.uid}-galleryImages`
-                                : `${this.props.user.uid}-galleryVideos`
+                                ? `${this.props.user.uid}`
+                                : `${this.props.user.uid}`
                     : null
                 )
                 .child(
                     this.state.upload
                         ? this.state.profileImageUploaded
                             ? 'profileImage'
-                            : `${uniqueId}`
+                            : this.state.galleryImageUploaded
+                                ? `${uniqueId}-galleryImage`
+                                : `${uniqueId}-galleryVideo`
                     : null
                 )
                 .getDownloadURL()
@@ -112,7 +114,7 @@ class Header extends Component {
                         profileImageUploaded: false,
                     });
                     } else {
-                        this.props.userUploadedImageToDisplay(url, this.state.galleryImageUploaded);
+                        this.props.userUploadedFile(url, this.state.galleryImageUploaded);
                         this.setState({ 
                             galleryImageUploaded: false,
                             galleryVideoUploaded: false,

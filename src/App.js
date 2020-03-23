@@ -29,45 +29,38 @@ class App extends Component {
         this.setState({ user }, () => {
           this.state.storage
             .ref()
-            .child(`${this.state.user.uid}-galleryImages`)
+            .child(`${this.state.user.uid}`)
             .listAll()
             .then(res => {
               Promise.all(
                 res.items.map(item => {
                   return item.getDownloadURL();
                 })
-              ).then(userImages => this.setState({ userImages }))
-            });
+              ).then(urls => {
+                urls.forEach(url => {
+                  if(url.includes('galleryImage')) {
+                    const userImages = [...this.state.userImages];
+                    userImages.unshift(url);
+                    this.setState({ userImages });
 
-          this.state.storage
-            .ref()
-            .child(`${this.state.user.uid}-galleryVideos`)
-            .listAll()
-            .then(res => {
-              Promise.all(
-                res.items.map(item => {
-                  return item.getDownloadURL();
-                })
-              ).then(userVideos => this.setState({ userVideos }))
-            });
+                  } else if(url.includes('galleryVideo')) {
+                    const userVideos = [...this.state.userVideos];
+                    userVideos.unshift(url);
+                    this.setState({ userVideos });
 
-          this.state.storage
-            .ref()
-            .child(`${this.state.user.uid}-profileImage`)
-            .listAll()
-            .then(res => {
-              Promise.all(
-                res.items.map(item => {
-                  return item.getDownloadURL();
-                })
-              ).then(profileImage => this.setState({ profileImage }))
+                  } else {
+                    const profileImage = url;
+                    this.setState({ profileImage });
+                  };
+                });
+              });
             });
         });
-      }
+      };
     });
-  }
+  };
 
-  userUploadedImageToDisplay = (url, type) => {
+  userUploadedFile = (url, type) => {
     //----------- if type is true, it means it's image file and if not, it's video file ----------//
     if(type === true) {
       const userImages = [...this.state.userImages];
@@ -82,20 +75,20 @@ class App extends Component {
       userVideos.unshift(url);
 
       this.setState({ userVideos });
-    }
+    };
   };
 
   deleteItem = e => {
     e.stopPropagation();
     if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
       const confirm = window.confirm("Are you sure you want to delete the image?");
-      const deletedItem = e.target.parentNode.childNodes[0].currentSrc;
-      const userItems = deletedItem.includes('galleryImages') ? [...this.state.userImages] : [...this.state.userVideos];
+      const deletedItem = e.target.parentNode.childNodes[0].getAttribute('src');
+      const userItems = deletedItem.includes('galleryImage') ? [...this.state.userImages] : [...this.state.userVideos];
 
       if (confirm) {
         this.state.storage.refFromURL(deletedItem).delete();
 
-        if (deletedItem.includes('galleryImages')) {
+        if (deletedItem.includes('galleryImage')) {
           const filteredUserImages = userItems.filter(image => image !== deletedItem);
           this.setState({ userImages: filteredUserImages });
 
@@ -132,7 +125,6 @@ class App extends Component {
     })
   }
 
-
   render() {
     return (
       <Router>
@@ -144,8 +136,7 @@ class App extends Component {
                   userImages={this.state.userImages}
                   userVideos={this.state.userVideos}
                   profileImage={this.state.profileImage}
-                  userUploadedImageToDisplay={this.userUploadedImageToDisplay}
-                  userUploadedVideoToDisplay={this.userUploadedVideoToDisplay}
+                  userUploadedFile={this.userUploadedFile}
                   videoIconClicked={this.state.videoIconClicked}
                   journalIconClicked={this.state.journalIconClicked}
                   journals={this.state.journals}
