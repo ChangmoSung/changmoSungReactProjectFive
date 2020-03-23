@@ -24,9 +24,9 @@ class Main extends Component {
     return (
       <main className="gallery">
         <div className='links'>
-          <Link to="/changmoSungReactProjectFive/" data-type='images' onClick={this.props.iconClicked}><i className="far fa-image" tabIndex='0'></i></Link>
+          <Link to="/changmoSungReactProjectFive/" data-type='images' onClick={this.props.iconToggle}><i className="far fa-image" data-type='images' tabIndex='0'></i></Link>
 
-          <Link to="/changmoSungReactProjectFive/video/" data-type='videos' onClick={this.props.iconClicked}><i className="fas fa-video" tabIndex='0'></i></Link>
+          <Link to="/changmoSungReactProjectFive/video/" data-type='videos' onClick={this.props.iconToggle}><i className="fas fa-video" data-type='videos' tabIndex='0'></i></Link>
           
           <Link to='/changmoSungReactProjectFive/journal/' data-type='journals' onClick={this.props.journalIconClicked}><i className="fas fa-book" tabIndex='0'></i></Link>
         </div>

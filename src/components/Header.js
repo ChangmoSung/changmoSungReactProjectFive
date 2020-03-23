@@ -210,12 +210,10 @@ class Header extends Component {
                                         ? `${this.props.userVideos.length} videos`
                                         : `${this.props.userVideos.length} video`
 
-                                    : this.props.journalIconClicked
-                                            ? typeof this.props.journalLength === 'number'
-                                                ? this.props.journalLength > 1
-                                                    ? `${this.props.journalLength} journals`
-                                                    : `${this.props.journalLength} journal`
-                                                : '0 journal'
+                                : this.props.journalIconClicked
+                                    ? this.props.journals.length > 1
+                                        ? `${this.props.journals.length} journals`
+                                        : `${this.props.journals.length} journal`
                                                 
                                 : this.props.userImages.length > 1
                                     ? `${this.props.userImages.length} images`

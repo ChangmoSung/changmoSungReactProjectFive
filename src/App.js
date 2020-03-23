@@ -19,7 +19,7 @@ class App extends Component {
       profileImage: null,
       videoIconClicked: false,
       journalIconClicked: false,
-      journalLength: 0,
+      journals: [],
     };
   }
 
@@ -89,36 +89,27 @@ class App extends Component {
     e.stopPropagation();
     if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
       const confirm = window.confirm("Are you sure you want to delete the image?");
-      
       const deletedItem = e.target.parentNode.childNodes[0].currentSrc;
+      const userItems = deletedItem.includes('galleryImages') ? [...this.state.userImages] : [...this.state.userVideos];
 
       if (confirm) {
         this.state.storage.refFromURL(deletedItem).delete();
 
         if (deletedItem.includes('galleryImages')) {
-          const userImages = [...this.state.userImages];
-    
-          const filteredUserImages = userImages.filter(
-            image => image !== deletedItem
-          );
-    
+          const filteredUserImages = userItems.filter(image => image !== deletedItem);
           this.setState({ userImages: filteredUserImages });
-    
+
         } else {
-          const userVideos = [...this.state.userVideos];
-
-          const filteredUserVideos = userVideos.filter(
-            video => video !== deletedItem
-          );
-
+          const filteredUserVideos = userItems.filter(video => video !== deletedItem);
           this.setState({ userVideos: filteredUserVideos });
         }
       }
     }
   };
 
-  iconClicked = (e) => {
+  iconToggle = e => {
     const type = e.target.dataset.type;
+
     if(type === 'images') {
       this.setState({
         videoIconClicked: false,
@@ -133,11 +124,11 @@ class App extends Component {
     }
   }
 
-  journalIconClicked = length => {
+  journalIconClicked = journals => {
     this.setState({
       videoIconClicked: false,
       journalIconClicked: true,
-      journalLength: length
+      journals
     })
   }
 
@@ -157,14 +148,14 @@ class App extends Component {
                   userUploadedVideoToDisplay={this.userUploadedVideoToDisplay}
                   videoIconClicked={this.state.videoIconClicked}
                   journalIconClicked={this.state.journalIconClicked}
-                  journalLength={this.state.journalLength}
+                  journals={this.state.journals}
                 />
 
                 <Main
                   userImages={this.state.userImages}
                   userVideos={this.state.userVideos}
                   deleteItem={this.deleteItem}
-                  iconClicked={this.iconClicked}
+                  iconToggle={this.iconToggle}
                   journalIconClicked={this.journalIconClicked}
                 />
               </div>
