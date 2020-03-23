@@ -67,75 +67,70 @@ class App extends Component {
     });
   }
 
-  userUploadedImageToDisplay = url => {
-    const userImages = [...this.state.userImages];
+  userUploadedImageToDisplay = (url, type) => {
+    //----------- if type is true, it means it's image file and if not, it's video file ----------//
+    if(type === true) {
+      const userImages = [...this.state.userImages];
 
-    userImages.unshift(url);
+      userImages.unshift(url);
 
-    this.setState({ userImages });
+      this.setState({ userImages });
+
+    } else {
+      const userVideos = [...this.state.userVideos];
+
+      userVideos.unshift(url);
+
+      this.setState({ userVideos });
+    }
   };
 
-  userUploadedVideoToDisplay = url => {
-    const userVideos = [...this.state.userVideos];
-
-    userVideos.unshift(url);
-
-    this.setState({ userVideos });
-  };
-
-  deleteImage = e => {
+  deleteItem = e => {
     e.stopPropagation();
     if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
       const confirm = window.confirm("Are you sure you want to delete the image?");
-  
+      
+      const deletedItem = e.target.parentNode.childNodes[0].currentSrc;
+
       if (confirm) {
-        const userImages = [...this.state.userImages];
-  
-        const deletedImage = e.target.parentNode.childNodes[0].currentSrc;
-  
-        const filteredUserImages = userImages.filter(
-          image => image !== deletedImage
-        );
-  
-        this.setState({ userImages: filteredUserImages });
-  
-        this.state.storage.refFromURL(deletedImage).delete();
+        this.state.storage.refFromURL(deletedItem).delete();
+
+        if (deletedItem.includes('galleryImages')) {
+          const userImages = [...this.state.userImages];
+    
+          const filteredUserImages = userImages.filter(
+            image => image !== deletedItem
+          );
+    
+          this.setState({ userImages: filteredUserImages });
+    
+        } else {
+          const userVideos = [...this.state.userVideos];
+
+          const filteredUserVideos = userVideos.filter(
+            video => video !== deletedItem
+          );
+
+          this.setState({ userVideos: filteredUserVideos });
+        }
       }
     }
   };
 
-  deleteVideo = e => {
-    if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
-      const confirm = window.confirm("are you sure?");
-  
-      if (confirm) {
-        const userVideos = [...this.state.userVideos];
-  
-        const deletedVideo = e.target.parentNode.childNodes[0].currentSrc;
-  
-        const filteredUserVideos = userVideos.filter(
-          video => video !== deletedVideo
-        );
-  
-        this.setState({ userVideos: filteredUserVideos });
-  
-        this.state.storage.refFromURL(deletedVideo).delete();
-      }
+  iconClicked = (e) => {
+    const type = e.target.dataset.type;
+    if(type === 'images') {
+      this.setState({
+        videoIconClicked: false,
+        journalIconClicked: false,
+      })
+
+    } else {
+      this.setState({
+        videoIconClicked: true,
+        journalIconClicked: false,
+      })
     }
-  };
-
-  imageIconClicked = () => {
-    this.setState({
-      videoIconClicked: false,
-      journalIconClicked: false,
-    })
-  }
-
-  videoIconClicked = () => {
-    this.setState({
-      videoIconClicked: true,
-      journalIconClicked: false,
-    })
   }
 
   journalIconClicked = length => {
@@ -168,10 +163,8 @@ class App extends Component {
                 <Main
                   userImages={this.state.userImages}
                   userVideos={this.state.userVideos}
-                  deleteImage={this.deleteImage}
-                  deleteVideo={this.deleteVideo}
-                  imageIconClicked={this.imageIconClicked}
-                  videoIconClicked={this.videoIconClicked}
+                  deleteItem={this.deleteItem}
+                  iconClicked={this.iconClicked}
                   journalIconClicked={this.journalIconClicked}
                 />
               </div>

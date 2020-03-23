@@ -24,11 +24,11 @@ class Main extends Component {
     return (
       <main className="gallery">
         <div className='links'>
-          <Link to="/changmoSungReactProjectFive/" onClick={this.props.imageIconClicked}><i className="far fa-image" tabIndex='0'></i></Link>
+          <Link to="/changmoSungReactProjectFive/" data-type='images' onClick={this.props.iconClicked}><i className="far fa-image" tabIndex='0'></i></Link>
 
-          <Link to="/changmoSungReactProjectFive/video/" onClick={this.props.videoIconClicked}><i className="fas fa-video" tabIndex='0'></i></Link>
+          <Link to="/changmoSungReactProjectFive/video/" data-type='videos' onClick={this.props.iconClicked}><i className="fas fa-video" tabIndex='0'></i></Link>
           
-          <Link to='/changmoSungReactProjectFive/journal/' onClick={this.props.journalIconClicked}><i className="fas fa-book" tabIndex='0'></i></Link>
+          <Link to='/changmoSungReactProjectFive/journal/' data-type='journals' onClick={this.props.journalIconClicked}><i className="fas fa-book" tabIndex='0'></i></Link>
         </div>
 
         <ul className="wrapper">
@@ -41,7 +41,7 @@ class Main extends Component {
                     alt="user uploaded item"
                   ></img>
 
-                  <div tabIndex='0' onKeyDown={this.props.deleteImage} onClick={this.props.deleteImage}>
+                  <div tabIndex='0' onKeyDown={this.props.deleteItem} onClick={this.props.deleteItem}>
                     <span>delete</span>
                   </div>
                 </button>
@@ -59,7 +59,7 @@ class Main extends Component {
                     controls="controls"
                   ></video>
 
-                  <div tabIndex='0' onKeyDown={this.props.deleteVideo} onClick={this.props.deleteVideo}>
+                  <div tabIndex='0' onKeyDown={this.props.deleteItem} onClick={this.props.deleteItem}>
                     <span>delete</span>
                   </div>
                 </button>

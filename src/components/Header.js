@@ -83,7 +83,7 @@ class Header extends Component {
             },
             error => {
                 //error
-                console.log(error);
+                alert(error);
             },
             () => {
                 //complete
@@ -112,13 +112,11 @@ class Header extends Component {
                         profileImageUploaded: false,
                     });
                     } else {
-                        if (this.state.galleryImageUploaded) {
-                            this.props.userUploadedImageToDisplay(url);
-                            this.setState({ galleryImageUploaded: false });
-                        } else {
-                            this.props.userUploadedVideoToDisplay(url);
-                            this.setState({ galleryVideoUploaded: false });
-                        }
+                        this.props.userUploadedImageToDisplay(url, this.state.galleryImageUploaded);
+                        this.setState({ 
+                            galleryImageUploaded: false,
+                            galleryVideoUploaded: false,
+                         });
                     }
                 });
 
