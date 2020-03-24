@@ -13,7 +13,7 @@ class Main extends Component {
 
     image.classList.toggle("enlarged");
 
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13) {
       const image = e.target;
 
       image.classList.toggle("enlarged");
@@ -27,7 +27,7 @@ class Main extends Component {
           <Link to="/changmoSungReactProjectFive/" data-type='images' onClick={this.props.iconToggle}><i className="far fa-image" data-type='images' tabIndex='0'></i></Link>
 
           <Link to="/changmoSungReactProjectFive/video/" data-type='videos' onClick={this.props.iconToggle}><i className="fas fa-video" data-type='videos' tabIndex='0'></i></Link>
-          
+
           <Link to='/changmoSungReactProjectFive/journal/' data-type='journals' onClick={this.props.journalIconClicked}><i className="fas fa-book" tabIndex='0'></i></Link>
         </div>
 

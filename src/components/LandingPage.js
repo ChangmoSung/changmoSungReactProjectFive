@@ -22,7 +22,7 @@ class LandingPage extends Component {
         let email;
         let password;
 
-        if(this.state.testMode) {
+        if (this.state.testMode) {
             email = 'changmosung0914@gmail.com';
             password = 'hirechangmo';
         } else {
@@ -42,7 +42,7 @@ class LandingPage extends Component {
 
     signUp = e => {
         e.preventDefault();
-        
+
         const email = this.state.signUpEmail.current.value;
         const password = this.state.signUpPassword.current.value;
 
@@ -61,7 +61,7 @@ class LandingPage extends Component {
     }
 
     toggleSignUpPage = e => {
-        if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
+        if (e.keyCode === 13 || typeof e.keyCode !== 'number') {
             this.setState({
                 signUpButtonClicked: !this.state.signUpButtonClicked,
             })
@@ -69,7 +69,7 @@ class LandingPage extends Component {
     }
 
     testMode = () => {
-        this.setState({ 
+        this.setState({
             testMode: true,
         }, () => this.signIn())
     }
@@ -85,7 +85,7 @@ class LandingPage extends Component {
                 </div>
 
                 {this.state.signUpButtonClicked
-                ? 
+                    ?
                     <form className='signUpForm' onSubmit={this.signUp}>
                         <label htmlFor='signUpEmail'>email</label>
                         <input ref={this.state.signUpEmail} id='signUpEmail' type='email' placeholder='email' required></input>
@@ -97,7 +97,7 @@ class LandingPage extends Component {
 
                         <span tabIndex='0' onKeyDown={this.toggleSignUpPage} onClick={this.toggleSignUpPage}>X</span>
                     </form>
-                : 
+                    :
                     <form className='signInForm' onSubmit={this.signIn}>
                         <label htmlFor='signInEmail'>email</label>
                         <input ref={this.state.signInEmail} id='signInEmail' type='email' placeholder='email' required></input>

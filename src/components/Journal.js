@@ -10,7 +10,7 @@ class Journal extends Component {
             user: null,
             userJournals: [],
         }
-        
+
         this.title = React.createRef();
         this.journal = React.createRef();
     }
@@ -18,8 +18,8 @@ class Journal extends Component {
     componentDidMount() {
         this.state.auth.onAuthStateChanged((user) => {
             if (user) {
-                this.setState({ 
-                    user 
+                this.setState({
+                    user
                 }, () => {
                     this.state.database.collection(this.state.user.uid).onSnapshot(snapshot => {
                         const userJournals = [...this.state.userJournals];
@@ -60,9 +60,9 @@ class Journal extends Component {
     deleteJournal = e => {
         const confirm = window.confirm('Are you sure you want to delete the bio?');
 
-        if(confirm) {
+        if (confirm) {
             const uniqueId = e.target.parentNode.id;
-            
+
             this.state.database.collection(this.state.user.uid).doc(uniqueId).delete().then(() => {
                 const userJournals = [...this.state.userJournals];
 
@@ -74,7 +74,7 @@ class Journal extends Component {
         }
     }
 
-    render() { 
+    render() {
         return (
             <div className='journalSection'>
                 <form onSubmit={this.setJournal} className='journalForm'>
@@ -101,8 +101,8 @@ class Journal extends Component {
                     })}
                 </div>
             </div>
-         );
+        );
     }
 }
- 
+
 export default Journal;

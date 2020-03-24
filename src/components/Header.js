@@ -23,14 +23,14 @@ class Header extends Component {
     }
 
     uploadProfileImage = e => {
-        if(e.target.files[0].type.includes('video')) {
+        if (e.target.files[0].type.includes('video')) {
             alert('For profile, you can only upload image')
         } else {
             this.setState({
                 upload: true,
                 profileImageUploaded: true,
                 profileImage: e.target.files[0]
-            },() => this.upload(this.state.profileImage));
+            }, () => this.upload(this.state.profileImage));
         }
     };
 
@@ -39,15 +39,15 @@ class Header extends Component {
             upload: true
         });
         if (e.target.files[0].type.includes("video")) {
-        this.setState({
-            galleryVideoUploaded: true,
-            galleryVideo: e.target.files[0]
-            },() => this.upload(this.state.galleryVideo));
+            this.setState({
+                galleryVideoUploaded: true,
+                galleryVideo: e.target.files[0]
+            }, () => this.upload(this.state.galleryVideo));
         } else {
-        this.setState({
-            galleryImageUploaded: true,
-            galleryImage: e.target.files[0]
-            },() => this.upload(this.state.galleryImage));
+            this.setState({
+                galleryImageUploaded: true,
+                galleryImage: e.target.files[0]
+            }, () => this.upload(this.state.galleryImage));
         }
     };
 
@@ -64,7 +64,7 @@ class Header extends Component {
                         : this.state.galleryImageUploaded
                             ? `${this.props.user.uid}/${uniqueId}-galleryImage`
                             : `${this.props.user.uid}/${uniqueId}-galleryVideo`
-                : null
+                    : null
             )
             .put(imageToUpload);
 
@@ -73,7 +73,7 @@ class Header extends Component {
             snapshot => {
                 //progress
                 const progress = Math.round(
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 
                 this.setState({ progress });
 
@@ -88,46 +88,46 @@ class Header extends Component {
             () => {
                 //complete
                 this.state.storage
-                .ref(
-                    this.state.upload
-                        ? this.state.profileImageUploaded
-                            ? `${this.props.user.uid}`
-                            : this.state.galleryImageUploaded
+                    .ref(
+                        this.state.upload
+                            ? this.state.profileImageUploaded
                                 ? `${this.props.user.uid}`
-                                : `${this.props.user.uid}`
-                    : null
-                )
-                .child(
-                    this.state.upload
-                        ? this.state.profileImageUploaded
-                            ? 'profileImage'
-                            : this.state.galleryImageUploaded
-                                ? `${uniqueId}-galleryImage`
-                                : `${uniqueId}-galleryVideo`
-                    : null
-                )
-                .getDownloadURL()
-                .then(url => {
-                    if (this.state.profileImageUploaded) {
-                    this.setState({
-                        profileImage: this.state.profileImageUploaded ? url : null,
-                        profileImageUploaded: false,
+                                : this.state.galleryImageUploaded
+                                    ? `${this.props.user.uid}`
+                                    : `${this.props.user.uid}`
+                            : null
+                    )
+                    .child(
+                        this.state.upload
+                            ? this.state.profileImageUploaded
+                                ? 'profileImage'
+                                : this.state.galleryImageUploaded
+                                    ? `${uniqueId}-galleryImage`
+                                    : `${uniqueId}-galleryVideo`
+                            : null
+                    )
+                    .getDownloadURL()
+                    .then(url => {
+                        if (this.state.profileImageUploaded) {
+                            this.setState({
+                                profileImage: this.state.profileImageUploaded ? url : null,
+                                profileImageUploaded: false,
+                            });
+                        } else {
+                            this.props.userUploadedFile(url, this.state.galleryImageUploaded);
+                            this.setState({
+                                galleryImageUploaded: false,
+                                galleryVideoUploaded: false,
+                            });
+                        }
                     });
-                    } else {
-                        this.props.userUploadedFile(url, this.state.galleryImageUploaded);
-                        this.setState({ 
-                            galleryImageUploaded: false,
-                            galleryVideoUploaded: false,
-                         });
-                    }
-                });
 
                 setTimeout(() => {
                     this.state.uploadEmoji.current.classList.remove('emojiVisible')
 
                     this.state.progressSpan.current.classList.remove('progress')
                     this.setState({ progress: 0 })
-                },4000)
+                }, 4000)
             }
         );
     };
@@ -135,9 +135,9 @@ class Header extends Component {
     signOut = () => {
         const confirm = window.confirm('Are you sure you want to sign out?');
 
-        if(confirm) {
+        if (confirm) {
             this.state.auth.signOut();
-    
+
             this.state.auth.onAuthStateChanged(user => {
                 console.log(user)
                 if (user) {
@@ -152,13 +152,13 @@ class Header extends Component {
     }
 
 
-  render() {
-    return (
-        <header>
-            <div className="wrapper headerFlexContainer">
-                <div className="profileImage">
-                    {this.props.profileImage 
-                        ? 
+    render() {
+        return (
+            <header>
+                <div className="wrapper headerFlexContainer">
+                    <div className="profileImage">
+                        {this.props.profileImage
+                            ?
                             <div>
                                 <input
                                     id="profileImageUpload"
@@ -173,20 +173,20 @@ class Header extends Component {
                                     ></img>
                                 </label>
                             </div>
-                        : 
+                            :
                             <div>
                                 <label htmlFor="profileImageUpload" className='uploadImageText'>
-                                {this.state.profileImage 
-                                    ? 
+                                    {this.state.profileImage
+                                        ?
                                         <img
                                             src={this.state.profileImage}
                                             alt="user profile"
-                                        ></img> 
-                                    : 
+                                        ></img>
+                                        :
                                         <span>
                                             click here for profile image!
                                         </span>
-                                }
+                                    }
                                 </label>
                                 <input
                                     id="profileImageUpload"
@@ -195,57 +195,59 @@ class Header extends Component {
                                 ></input>
                             </div>
                         }
-                </div>
-
-                <div className="userInfo">
-                    <h1>{this.props.user.email}</h1>
-
-                    <div className="progressBar">
-                        <span ref={this.state.progressSpan} style={{ width: `${this.state.progress}%` }}></span>
                     </div>
 
-                    <div className='uploadAndSignOutButtons'>
-                        <p>
-                            <span>
-                                {this.props.videoIconClicked
-                                    ? this.props.userVideos.length > 1
-                                        ? `${this.props.userVideos.length} videos`
-                                        : `${this.props.userVideos.length} video`
+                    <div className="userInfo">
+                        <h1>{this.props.user.email}</h1>
 
-                                : this.props.journalIconClicked
-                                    ? this.props.journals.length > 1
-                                        ? `${this.props.journals.length} journals`
-                                        : `${this.props.journals.length} journal`
-                                                
-                                : this.props.userImages.length > 1
-                                    ? `${this.props.userImages.length} images`
-                                    : `${this.props.userImages.length} image`
-                                }
-                            </span>
-                        </p>
+                        <div className="progressBar">
+                            <span ref={this.state.progressSpan} style={{ width: `${this.state.progress}%` }}></span>
+                        </div>
 
-                        <input
-                            id="fileUpload"
-                            type="file"
-                            onChange={this.uploadGallery}
-                        ></input>
+                        <div className='uploadAndSignOutButtons'>
+                            <p>
+                                <span>
+                                    {this.props.videoIconClicked
+                                        ? this.props.userVideos.length > 1
+                                            ? `${this.props.userVideos.length} videos`
+                                            : `${this.props.userVideos.length} video`
 
-                        <label htmlFor="fileUpload">
-                            <span>upload</span>
+                                    : this.props.journalIconClicked
+                                        ? this.props.journals.length !== undefined
+                                            ? this.props.journals.length > 1
+                                                ? `${this.props.journals.length} journals`
+                                                : `${this.props.journals.length} journal`
+                                        : null
 
-                            <span role='img' aria-label='heart emoji' ref ={this.state.uploadEmoji}className='uploadEmoji'>😍</span>
-                        </label>
+                                    : this.props.userImages.length > 1
+                                        ? `${this.props.userImages.length} images`
+                                        : `${this.props.userImages.length} image`
+                                    }
+                                </span>
+                            </p>
+
+                            <input
+                                id="fileUpload"
+                                type="file"
+                                onChange={this.uploadGallery}
+                            ></input>
+
+                            <label htmlFor="fileUpload">
+                                <span>upload</span>
+
+                                <span role='img' aria-label='heart emoji' ref={this.state.uploadEmoji} className='uploadEmoji'>😍</span>
+                            </label>
 
 
-                        <Link to='/changmoSungReactProjectFive/' className='signOutLink' onClick={this.signOut}>
-                            <span className='signOut' tabIndex='0'>sign out</span>
-                        </Link>
+                            <Link to='/changmoSungReactProjectFive/' className='signOutLink' onClick={this.signOut}>
+                                <span className='signOut' tabIndex='0'>sign out</span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
-    );
-  }
+            </header>
+        );
+    }
 }
 
 export default Header;

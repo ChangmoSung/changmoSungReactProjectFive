@@ -38,12 +38,12 @@ class App extends Component {
                 })
               ).then(urls => {
                 urls.forEach(url => {
-                  if(url.includes('galleryImage')) {
+                  if (url.includes('galleryImage')) {
                     const userImages = [...this.state.userImages];
                     userImages.unshift(url);
                     this.setState({ userImages });
 
-                  } else if(url.includes('galleryVideo')) {
+                  } else if (url.includes('galleryVideo')) {
                     const userVideos = [...this.state.userVideos];
                     userVideos.unshift(url);
                     this.setState({ userVideos });
@@ -62,7 +62,7 @@ class App extends Component {
 
   userUploadedFile = (url, type) => {
     //----------- if type is true, it means it's image file and if not, it's video file ----------//
-    if(type === true) {
+    if (type === true) {
       const userImages = [...this.state.userImages];
 
       userImages.unshift(url);
@@ -80,7 +80,7 @@ class App extends Component {
 
   deleteItem = e => {
     e.stopPropagation();
-    if(e.keyCode === 13 || typeof e.keyCode !== 'number') {
+    if (e.keyCode === 13 || typeof e.keyCode !== 'number') {
       const confirm = window.confirm("Are you sure you want to delete the image?");
       const deletedItem = e.target.parentNode.childNodes[0].getAttribute('src');
       const userItems = deletedItem.includes('galleryImage') ? [...this.state.userImages] : [...this.state.userVideos];
@@ -103,7 +103,7 @@ class App extends Component {
   iconToggle = e => {
     const type = e.target.dataset.type;
 
-    if(type === 'images') {
+    if (type === 'images') {
       this.setState({
         videoIconClicked: false,
         journalIconClicked: false,
@@ -128,32 +128,32 @@ class App extends Component {
   render() {
     return (
       <Router>
-          <Route path="/changmoSungReactProjectFive/">
-            {this.state.user ? (
-              <div>
-                <Header
-                  user={this.state.user}
-                  userImages={this.state.userImages}
-                  userVideos={this.state.userVideos}
-                  profileImage={this.state.profileImage}
-                  userUploadedFile={this.userUploadedFile}
-                  videoIconClicked={this.state.videoIconClicked}
-                  journalIconClicked={this.state.journalIconClicked}
-                  journals={this.state.journals}
-                />
+        <Route path="/changmoSungReactProjectFive/">
+          {this.state.user ? (
+            <div>
+              <Header
+                user={this.state.user}
+                userImages={this.state.userImages}
+                userVideos={this.state.userVideos}
+                profileImage={this.state.profileImage}
+                userUploadedFile={this.userUploadedFile}
+                videoIconClicked={this.state.videoIconClicked}
+                journalIconClicked={this.state.journalIconClicked}
+                journals={this.state.journals}
+              />
 
-                <Main
-                  userImages={this.state.userImages}
-                  userVideos={this.state.userVideos}
-                  deleteItem={this.deleteItem}
-                  iconToggle={this.iconToggle}
-                  journalIconClicked={this.journalIconClicked}
-                />
-              </div>
-            ) : (
+              <Main
+                userImages={this.state.userImages}
+                userVideos={this.state.userVideos}
+                deleteItem={this.deleteItem}
+                iconToggle={this.iconToggle}
+                journalIconClicked={this.journalIconClicked}
+              />
+            </div>
+          ) : (
               <LandingPage />
             )}
-          </Route>
+        </Route>
       </Router>
     );
   }
