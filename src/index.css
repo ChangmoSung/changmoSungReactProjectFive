@@ -192,6 +192,7 @@ header {
 
 .profileImage img {
   border-radius: 50%;
+  font-size: 0;
 }
 
 .profileImage input {
@@ -233,14 +234,6 @@ header {
   display: flex;
   justify-content: space-evenly;
   text-transform: uppercase;
-}
-
-.uploadAndSignOutButtons p {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.9rem;
-  margin: 0;
 }
 
 .uploadAndSignOutButtons input {
@@ -402,6 +395,10 @@ header {
   transition: all 0.3s;
 }
 
+.highlight {
+  background: rgba(0, 0, 0, 0.2);
+}
+
 .links i {
   transition: all 0.3s;
 }
@@ -422,7 +419,7 @@ header {
   border-radius: 1rem;
   overflow: hidden;
   margin-bottom: 2rem;
-  border: none;
+  cursor: pointer;
 }
 
 .galleryImage:nth-child(3n+2) {
@@ -461,7 +458,7 @@ header {
   transform: scale(1);
 }
 
-.galleryImage div {
+.galleryImage span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -477,8 +474,8 @@ header {
   font-size: 1.8rem;
 }
 
-.galleryImage div:hover,
-.galleryImage div:focus {
+.galleryImage span:hover,
+.galleryImage span:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   outline: 1px dotted black;
 }
@@ -620,11 +617,6 @@ header {
     width: 60%;
   }
 
-  .uploadAndSignOutButtons p {
-    font-size: 1.7rem;
-    width: 12rem;
-  }
-
   .uploadAndSignOutButtons label,
   .signOut {
     width: 11rem;
@@ -725,7 +717,6 @@ header {
     font-size: 2.45rem;
   }
 
-  .uploadAndSignOutButtons p,
   .uploadAndSignOutButtons label,
   .signOut {
     font-size: 1.5rem;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from "./firebase";
+import firebase from "../firebase";
 
 class Journal extends Component {
     constructor() {
@@ -29,9 +29,8 @@ class Journal extends Component {
                         changes.forEach(change => {
                             userJournals.unshift(change.doc.data());
                         });
-                        this.setState({ userJournals }, () => {
-                            this.props.journalIconClicked(this.state.userJournals);
-                        });
+                        
+                        this.setState({ userJournals })
                     })
                 });
             };
@@ -67,9 +66,8 @@ class Journal extends Component {
                 const userJournals = [...this.state.userJournals];
 
                 const filteredJournals = userJournals.filter(journal => journal.id !== uniqueId);
+                
                 this.setState({ userJournals: filteredJournals });
-
-                this.props.journalIconClicked(filteredJournals);
             })
         }
     }

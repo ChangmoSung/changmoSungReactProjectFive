@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./App.css";
 import firebase from "./components/firebase";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -17,11 +17,10 @@ class App extends Component {
       userImages: [],
       userVideos: [],
       profileImage: null,
-      videoIconClicked: false,
-      journalIconClicked: false,
       journals: [],
     };
   }
+
 
   componentDidMount() {
     this.state.auth.onAuthStateChanged(user => {
@@ -60,8 +59,8 @@ class App extends Component {
     });
   };
 
+
   userUploadedFile = (url, type) => {
-    //----------- if type is true, it means it's image file and if not, it's video file ----------//
     if (type === true) {
       const userImages = [...this.state.userImages];
 
@@ -77,6 +76,7 @@ class App extends Component {
       this.setState({ userVideos });
     };
   };
+
 
   deleteItem = e => {
     e.stopPropagation();
@@ -100,56 +100,25 @@ class App extends Component {
     }
   };
 
-  iconToggle = e => {
-    const type = e.target.dataset.type;
-
-    if (type === 'images') {
-      this.setState({
-        videoIconClicked: false,
-        journalIconClicked: false,
-      })
-
-    } else {
-      this.setState({
-        videoIconClicked: true,
-        journalIconClicked: false,
-      })
-    }
-  }
-
-  journalIconClicked = journals => {
-    this.setState({
-      videoIconClicked: false,
-      journalIconClicked: true,
-      journals
-    })
-  }
 
   render() {
     return (
       <Router>
         <Route path="/changmoSungReactProjectFive/">
           {this.state.user ? (
-            <div>
+            <Fragment>
               <Header
                 user={this.state.user}
-                userImages={this.state.userImages}
-                userVideos={this.state.userVideos}
                 profileImage={this.state.profileImage}
                 userUploadedFile={this.userUploadedFile}
-                videoIconClicked={this.state.videoIconClicked}
-                journalIconClicked={this.state.journalIconClicked}
-                journals={this.state.journals}
               />
 
               <Main
                 userImages={this.state.userImages}
                 userVideos={this.state.userVideos}
                 deleteItem={this.deleteItem}
-                iconToggle={this.iconToggle}
-                journalIconClicked={this.journalIconClicked}
               />
-            </div>
+            </Fragment>
           ) : (
               <LandingPage />
             )}
