@@ -3,13 +3,9 @@ import { Link } from "react-router-dom";
 
 const UserInfo = props => {
     const signOut = () => {
-        const confirm = window.confirm('Are you sure you want to sign out?');
-
-        if (confirm) {
-            props.auth.signOut();
-
-            window.location.reload();
-        }
+        props.auth.signOut();
+        
+        window.location.reload();
     }
 
     return (

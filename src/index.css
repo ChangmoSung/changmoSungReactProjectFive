@@ -66,7 +66,6 @@ h2 {
 .testModeButton:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
-  outline: 1px dotted black;
 }
 
 .signInForm,
@@ -132,7 +131,6 @@ h2 {
 .signUpPageButton:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
-  outline: 1px dotted black;
 }
 
 .signInAndUpButtons {
@@ -153,11 +151,15 @@ h2 {
   transition: all 0.2s;
 }
 
+.signInAndUpButtons a {
+  color: white;
+  text-decoration: none;
+}
+
 .signInAndUpButtons button:hover,
 .signInAndUpButtons button:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
-  outline: 1px dotted black;
 }
 
 /* ------------------------ */
@@ -261,7 +263,6 @@ header {
 .uploadAndSignOutButtons input:focus + label {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
-  outline: 1px dotted black;
 }
 
 .signOutLink {
@@ -287,7 +288,6 @@ header {
 .signOut:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
-  outline: 1px dotted black;
 }
 
 .uploadEmoji {
@@ -401,6 +401,7 @@ header {
 
 .links i {
   transition: all 0.3s;
+  outline: none;
 }
 
 .links a:hover i,
@@ -477,7 +478,6 @@ header {
 .galleryImage span:hover,
 .galleryImage span:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
-  outline: 1px dotted black;
 }
 
 /* ------------------- */
@@ -566,7 +566,6 @@ header {
 .journal button:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
-  outline: 1px dotted black;
 }
 
 

@@ -8,24 +8,22 @@ import Journal from "./userItems/Journal";
 const Main = props => {
   return (
     <main className="gallery">
-      <Links />
+      <Links uid={props.uid} />
 
       <ul className="wrapper">
         <Switch>
-          <Route path="/changmoSungReactProjectFive/journal/">
+          <Route path={`/changmoSungReactProjectFive/${props.uid}/journal`}>
             <Journal />
           </Route>
 
-
-          <Route path="/changmoSungReactProjectFive/video/">
+          <Route path={`/changmoSungReactProjectFive/${props.uid}/video`}>
             <UserVideos
               userVideos={props.userVideos}
               deleteItem={props.deleteItem}
             />
           </Route>
 
-
-          <Route path='/changmoSungReactProjectFive/'>
+          <Route path={`/changmoSungReactProjectFive/${props.uid}`}>
             <UserImages
               userImages={props.userImages}
               deleteItem={props.deleteItem}

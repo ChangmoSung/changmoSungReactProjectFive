@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./App.css";
 import firebase from "./components/firebase";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import LandingPage from "./components/LandingPage";
+import LandingPage from "./components/landingPage/LandingPage";
 
 class App extends Component {
   constructor() {
@@ -13,7 +13,7 @@ class App extends Component {
       database: firebase.firestore(),
       storage: firebase.storage(),
       auth: firebase.auth(),
-      user: null,
+      user: '',
       userImages: [],
       userVideos: [],
       profileImage: null,
@@ -104,25 +104,24 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Route path="/changmoSungReactProjectFive/">
-          {this.state.user ? (
-            <Fragment>
-              <Header
-                user={this.state.user}
-                profileImage={this.state.profileImage}
-                userUploadedFile={this.userUploadedFile}
-              />
+        <Switch>
+          <Route path={`/changmoSungReactProjectFive/${this.state.user.uid}`}>
+            <Header
+              user={this.state.user}
+              profileImage={this.state.profileImage}
+              userUploadedFile={this.userUploadedFile}
+            />
 
-              <Main
-                userImages={this.state.userImages}
-                userVideos={this.state.userVideos}
-                deleteItem={this.deleteItem}
-              />
-            </Fragment>
-          ) : (
-              <LandingPage />
-            )}
-        </Route>
+            <Main
+              uid={this.state.user.uid}
+              userImages={this.state.userImages}
+              userVideos={this.state.userVideos}
+              deleteItem={this.deleteItem}
+            />
+          </Route>
+
+          <Route path="/changmoSungReactProjectFive/" component={LandingPage}/>
+        </Switch>
       </Router>
     );
   }

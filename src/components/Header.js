@@ -115,12 +115,17 @@ class Header extends Component {
         );
     };
 
-
     render() {
         return (
             <header>
                 <div className="wrapper headerFlexContainer">
                     <div className="profileImage">
+                        <input
+                            id="profileImageUpload"
+                            type="file"
+                            onChange={this.uploadProfileImage}
+                        ></input>
+
                         <label htmlFor="profileImageUpload" 
                         className='uploadImageText'>
                             {this.state.profileImage || this.props.profileImage
@@ -140,12 +145,6 @@ class Header extends Component {
                                 <span>click here for profile image!</span>
                             :null}
                         </label>
-
-                        <input
-                            id="profileImageUpload"
-                            type="file"
-                            onChange={this.uploadProfileImage}
-                        ></input>
                     </div>
 
                     <UserInfo 
