@@ -668,6 +668,7 @@ header {
   .uploadAndSignOutButtons {
     align-items: center;
     flex-direction: column;
+    order: 2;
   }
 
   .uploadAndSignOutButtons label,

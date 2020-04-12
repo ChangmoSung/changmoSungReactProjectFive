@@ -61,7 +61,7 @@ class App extends Component {
 
 
   userUploadedFile = (url, type) => {
-    if (type === true) {
+    if (type) {
       const userImages = [...this.state.userImages];
 
       userImages.unshift(url);
@@ -80,6 +80,7 @@ class App extends Component {
 
   deleteItem = e => {
     e.stopPropagation();
+    
     if (e.keyCode === 13 || typeof e.keyCode !== 'number') {
       const confirm = window.confirm("Are you sure you want to delete the image?");
       const deletedItem = e.target.parentNode.childNodes[0].getAttribute('src');

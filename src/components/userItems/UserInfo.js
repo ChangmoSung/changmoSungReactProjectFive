@@ -12,10 +12,6 @@ const UserInfo = props => {
         <div className="userInfo">
             <h1>{props.userEmail}</h1>
 
-            <div className="progressBar">
-                <span ref={props.progressSpan} style={{ width: `${props.progress}%` }}></span>
-            </div>
-
             <div className='uploadAndSignOutButtons'>
                 <input
                     id="fileUpload"
@@ -32,6 +28,10 @@ const UserInfo = props => {
                 <Link to='/changmoSungReactProjectFive/' className='signOutLink' onClick={signOut}>
                     <span className='signOut' tabIndex='0'>sign out</span>
                 </Link>
+            </div>
+
+            <div className="progressBar">
+                <span ref={props.progressSpan} style={{ width: `${props.progress}%` }}></span>
             </div>
         </div>
     )
