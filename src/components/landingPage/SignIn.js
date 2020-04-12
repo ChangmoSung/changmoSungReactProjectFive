@@ -40,11 +40,7 @@ class SignIn extends Component {
                 <div className='signInAndUpButtons'>
                     <button>sign in</button>
 
-                    <button type='button' tabIndex='-1'>
-                        <Link to='/changmoSungReactProjectFive/signup'>
-                            <span tabIndex='0'>sign up</span>
-                        </Link>
-                    </button>
+                    <Link to='/changmoSungReactProjectFive/signup'>sign up</Link>
                 </div>
             </form>
         );

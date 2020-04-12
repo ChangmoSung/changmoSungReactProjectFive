@@ -26,7 +26,7 @@ const UserInfo = props => {
                 </label>
 
                 <Link to='/changmoSungReactProjectFive/' className='signOutLink' onClick={signOut}>
-                    <span className='signOut' tabIndex='0'>sign out</span>
+                    <span className='signOut'>sign out</span>
                 </Link>
             </div>
 

@@ -17,15 +17,15 @@ const Links = props => {
     return (
         <div className='links'>
             <Link to={`/changmoSungReactProjectFive/${props.uid}`} className='highlight' onClick={highlightLink}>
-                <i className="far fa-image" data-icon='yes' tabIndex='0' onKeyDown={highlightLink}></i>
+                <i className="far fa-image" data-icon='yes' onKeyDown={highlightLink}></i>
             </Link>
 
             <Link to={`/changmoSungReactProjectFive/${props.uid}/video`} onClick={highlightLink}>
-                <i className="fas fa-video" data-icon='yes' tabIndex='0' onKeyDown={highlightLink}></i>
+                <i className="fas fa-video" data-icon='yes' onKeyDown={highlightLink}></i>
             </Link>
 
             <Link to={`/changmoSungReactProjectFive/${props.uid}/journal`} onClick={highlightLink}>
-                <i className="fas fa-book" data-icon='yes' tabIndex='0' onKeyDown={highlightLink}></i>
+                <i className="fas fa-book" data-icon='yes' onKeyDown={highlightLink}></i>
             </Link>
         </div>
     )

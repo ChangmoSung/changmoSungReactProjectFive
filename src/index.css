@@ -99,17 +99,19 @@ h2 {
   font-size: 1.9rem; 
 }
 
-.signUpForm span {
+.signUpForm a {
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
+  text-decoration: none;
   font-size: 3.5rem;
   color: white;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-.signUpForm span:hover {
+.signUpForm a:hover,
+.signUpForm a:focus {
   transform: scale(1.5);
 }
 
@@ -138,7 +140,11 @@ h2 {
   justify-content: space-around;
 }
 
-.signInAndUpButtons button {
+.signInAndUpButtons button,
+.signInAndUpButtons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 35%;
   height: 4rem;
   font-size: 1.7rem;
@@ -148,17 +154,17 @@ h2 {
   cursor: pointer;
   border-radius: 1rem;
   text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 0 0.5rem 0.1rem white;
   transition: all 0.2s;
 }
 
-.signInAndUpButtons a {
-  color: white;
-  text-decoration: none;
-}
-
 .signInAndUpButtons button:hover,
-.signInAndUpButtons button:focus {
-  background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
+.signInAndUpButtons button:focus,
+.signInAndUpButtons a:hover,
+.signInAndUpButtons a:focus {
+  background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
   transform: scale(1.1);
 }
 
@@ -269,7 +275,7 @@ header {
   text-decoration: none;
 }
 
-.signOut {
+.signOutLink {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -284,8 +290,8 @@ header {
   transition: all 0.2s;
 }
 
-.signOut:hover,
-.signOut:focus {
+.signOutLink:hover,
+.signOutLink:focus {
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
   transform: scale(1.1);
 }
@@ -405,11 +411,12 @@ header {
 }
 
 .links a:hover i,
-.links i:focus {
+.links a:focus i {
   transform: scale(1.2);
 }
 
-.links a:hover {
+.links a:hover,
+.links a:focus {
   background: rgba(0, 0, 0, 0.2);
 }
 
