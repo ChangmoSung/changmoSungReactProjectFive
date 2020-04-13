@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/changmoSungReactProjectFive/static/css/main.85aa73a6.chunk.css",
-    "main.js": "/changmoSungReactProjectFive/static/js/main.a0f9794e.chunk.js",
-    "main.js.map": "/changmoSungReactProjectFive/static/js/main.a0f9794e.chunk.js.map",
-    "runtime-main.js": "/changmoSungReactProjectFive/static/js/runtime-main.e3260376.js",
-    "runtime-main.js.map": "/changmoSungReactProjectFive/static/js/runtime-main.e3260376.js.map",
-    "static/js/2.8b5b3cfc.chunk.js": "/changmoSungReactProjectFive/static/js/2.8b5b3cfc.chunk.js",
-    "static/js/2.8b5b3cfc.chunk.js.map": "/changmoSungReactProjectFive/static/js/2.8b5b3cfc.chunk.js.map",
-    "index.html": "/changmoSungReactProjectFive/index.html",
-    "precache-manifest.0b5b77068a94edad3c61cef1cd853a5a.js": "/changmoSungReactProjectFive/precache-manifest.0b5b77068a94edad3c61cef1cd853a5a.js",
-    "service-worker.js": "/changmoSungReactProjectFive/service-worker.js",
-    "static/css/main.85aa73a6.chunk.css.map": "/changmoSungReactProjectFive/static/css/main.85aa73a6.chunk.css.map",
-    "static/js/2.8b5b3cfc.chunk.js.LICENSE.txt": "/changmoSungReactProjectFive/static/js/2.8b5b3cfc.chunk.js.LICENSE.txt"
+    "main.css": "/changmoSungSmileyMagic/static/css/main.85aa73a6.chunk.css",
+    "main.js": "/changmoSungSmileyMagic/static/js/main.73ff9678.chunk.js",
+    "main.js.map": "/changmoSungSmileyMagic/static/js/main.73ff9678.chunk.js.map",
+    "runtime-main.js": "/changmoSungSmileyMagic/static/js/runtime-main.5066cbdb.js",
+    "runtime-main.js.map": "/changmoSungSmileyMagic/static/js/runtime-main.5066cbdb.js.map",
+    "static/js/2.c0a013b2.chunk.js": "/changmoSungSmileyMagic/static/js/2.c0a013b2.chunk.js",
+    "static/js/2.c0a013b2.chunk.js.map": "/changmoSungSmileyMagic/static/js/2.c0a013b2.chunk.js.map",
+    "index.html": "/changmoSungSmileyMagic/index.html",
+    "precache-manifest.68207c439856849152e6411b7e5b6682.js": "/changmoSungSmileyMagic/precache-manifest.68207c439856849152e6411b7e5b6682.js",
+    "service-worker.js": "/changmoSungSmileyMagic/service-worker.js",
+    "static/css/main.85aa73a6.chunk.css.map": "/changmoSungSmileyMagic/static/css/main.85aa73a6.chunk.css.map",
+    "static/js/2.c0a013b2.chunk.js.LICENSE.txt": "/changmoSungSmileyMagic/static/js/2.c0a013b2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e3260376.js",
-    "static/js/2.8b5b3cfc.chunk.js",
+    "static/js/runtime-main.5066cbdb.js",
+    "static/js/2.c0a013b2.chunk.js",
     "static/css/main.85aa73a6.chunk.css",
-    "static/js/main.a0f9794e.chunk.js"
+    "static/js/main.73ff9678.chunk.js"
   ]
 }
