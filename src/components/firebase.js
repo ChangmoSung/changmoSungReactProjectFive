@@ -1,18 +1,17 @@
 import firebase from "firebase";
 
-var firebaseConfig = {
-    apiKey: "AIzaSyAUDhlHmbfFpfZ8M9bPD-zoobBCosu57w8",
-    authDomain: "react-project-3f54a.firebaseapp.com",
-    databaseURL: "https://react-project-3f54a.firebaseio.com",
-    projectId: "react-project-3f54a",
-    storageBucket: "react-project-3f54a.appspot.com",
-    messagingSenderId: "139563383386",
-    appId: "1:139563383386:web:53e78a4d1203490b723663",
-    measurementId: "G-NY657CJ2J2"
+const firebaseConfig = {
+    apiKey: "AIzaSyBtgLztl975AE7vkIHw2tGsP-0QYDj855g",
+    authDomain: "smileymagic-965c9.firebaseapp.com",
+    databaseURL: "https://smileymagic-965c9.firebaseio.com",
+    projectId: "smileymagic-965c9",
+    storageBucket: "smileymagic-965c9.appspot.com",
+    messagingSenderId: "436370090359",
+    appId: "1:436370090359:web:1b19f87e036387746d5972",
+    measurementId: "G-B0BJYBGTN3"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-
 
 export default firebase;

@@ -25,7 +25,7 @@ const UserInfo = props => {
                     <span role='img' aria-label='heart emoji' ref={props.uploadEmoji} className='uploadEmoji'>😍</span>
                 </label>
 
-                <Link to='/changmoSungReactProjectFive/' className='signOutLink' onClick={signOut}>
+                <Link to='/' className='signOutLink' onClick={signOut}>
                     <span className='signOut'>sign out</span>
                 </Link>
             </div>

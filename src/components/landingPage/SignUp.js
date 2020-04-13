@@ -38,7 +38,7 @@ class SignUp extends Component {
 
                 <button className='signUpPageButton'>sign up</button>
 
-                <Link to='/changmoSungReactProjectFive/'>X</Link>
+                <Link to='/'>X</Link>
             </form>
          );
     }

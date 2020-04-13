@@ -17,7 +17,7 @@ class LandingPage extends Component {
     redirectUser = () => {
         this.state.auth.onAuthStateChanged(user => {
             if (user) {
-                this.props.history.push(`/changmoSungReactProjectFive/${user.uid}`)
+                this.props.history.push(`/${user.uid}`)
             }
         })
     }
@@ -48,12 +48,12 @@ class LandingPage extends Component {
 
                 <Switch>
                     <Route 
-                        path='/changmoSungReactProjectFive/signup' 
+                        path='/signup' 
                         component={() => <SignUp redirectUser={this.redirectUser}/>} 
                     />
 
                     <Route 
-                        path='/changmoSungReactProjectFive/' 
+                        path='/' 
                         component={() => <SignIn signIn={this.signIn} redirectUser={this.redirectUser}/>}
                     />
                 </Switch>

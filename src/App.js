@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 import firebase from "./components/firebase";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { 
+  HashRouter as Router, 
+  Route, 
+  Switch 
+} from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import LandingPage from "./components/landingPage/LandingPage";
@@ -104,9 +108,9 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router basename='/'>
         <Switch>
-          <Route path={`/changmoSungReactProjectFive/${this.state.user.uid}`}>
+          <Route path={`/${this.state.user.uid}`}>
             <Header
               user={this.state.user}
               profileImage={this.state.profileImage}
@@ -121,7 +125,7 @@ class App extends Component {
             />
           </Route>
 
-          <Route path="/changmoSungReactProjectFive/" component={LandingPage}/>
+          <Route path="/" component={LandingPage}/>
         </Switch>
       </Router>
     );

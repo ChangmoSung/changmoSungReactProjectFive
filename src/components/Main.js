@@ -12,18 +12,18 @@ const Main = props => {
 
       <ul className="wrapper">
         <Switch>
-          <Route path={`/changmoSungReactProjectFive/${props.uid}/journal`}>
+          <Route path={`/${props.uid}/journal`}>
             <Journal />
           </Route>
 
-          <Route path={`/changmoSungReactProjectFive/${props.uid}/video`}>
+          <Route path={`/${props.uid}/video`}>
             <UserVideos
               userVideos={props.userVideos}
               deleteItem={props.deleteItem}
             />
           </Route>
 
-          <Route path={`/changmoSungReactProjectFive/${props.uid}`}>
+          <Route path={`/${props.uid}`}>
             <UserImages
               userImages={props.userImages}
               deleteItem={props.deleteItem}

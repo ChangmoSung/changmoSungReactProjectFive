@@ -40,7 +40,7 @@ class SignIn extends Component {
                 <div className='signInAndUpButtons'>
                     <button>sign in</button>
 
-                    <Link to='/changmoSungReactProjectFive/signup'>sign up</Link>
+                    <Link to='/signup'>sign up</Link>
                 </div>
             </form>
         );
