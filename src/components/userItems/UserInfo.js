@@ -20,14 +20,12 @@ const UserInfo = props => {
                 ></input>
 
                 <label htmlFor="fileUpload">
-                    <span>upload</span>
+                    upload
 
                     <span role='img' aria-label='heart emoji' ref={props.uploadEmoji} className='uploadEmoji'>😍</span>
                 </label>
 
-                <Link to='/' className='signOutLink' onClick={signOut}>
-                    <span className='signOut'>sign out</span>
-                </Link>
+                <Link to='/' className='signOutLink' onClick={signOut}>sign out</Link>
             </div>
 
             <div className="progressBar">

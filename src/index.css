@@ -127,6 +127,8 @@ h2 {
   border-radius: 1rem;
   text-transform: uppercase;
   transition: all 0.3s;
+  border: none;
+  box-shadow: 0 0 0.5rem 0.1rem white;
 }
 
 .signUpPageButton:hover,
@@ -230,7 +232,7 @@ header {
   justify-content: space-around;
   text-align: center;
   width: 65%;
-  height: 100%;
+  height: 85%;
 }
 
 .userInfo h1 {
@@ -250,13 +252,14 @@ header {
 	z-index: -1;
 }
 
-.uploadAndSignOutButtons label {
+.uploadAndSignOutButtons label,
+a.signOutLink {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 13rem;
-  height: 3.7rem;
-  font-size: 1.7rem;
+  width: 16rem;
+  height: 4rem;
+  font-size: 2rem;
   font-weight: bold;
   color: white;
   background: linear-gradient(to right, #0072ff, #00c6ff); 
@@ -613,6 +616,10 @@ header {
     width: 40%;
   }
 
+  .signUpPageButton {
+    width: 70%;
+  }
+
   .profileImage label {
     width: 17rem;
     height: 17rem;
@@ -620,14 +627,13 @@ header {
 
   .userInfo h1 {
     font-size: 2.6rem;
-    width: 60%;
   }
 
   .uploadAndSignOutButtons label,
-  .signOut {
-    width: 11rem;
-    height: 3.3rem;
-    font-size: 1.6rem;
+  a.signOutLink {
+    width: 13rem;
+    height: 3.5rem;
+    font-size: 1.75rem;
   }
 
   .progressBar {
@@ -656,8 +662,8 @@ header {
   }
 
   .profileImage label {
-    width: 13rem;
-    height: 13rem;
+    width: 15rem;
+    height: 15rem;
   }
 
   .userInfo {
@@ -678,8 +684,6 @@ header {
     order: 2;
   }
 
-  .uploadAndSignOutButtons label,
-  .signOut,
   .progressBar {
     height: 3rem;
   }
@@ -710,6 +714,18 @@ header {
     top: 24.7rem;
   }
 
+  .profileImage label {
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .uploadAndSignOutButtons label,
+  a.signOutLink {
+    width: 12rem;
+    height: 3.5rem;
+    font-size: 1.6rem;
+  }
+
   .galleryImage {
     min-height: 40rem;
   }
@@ -724,8 +740,22 @@ header {
     font-size: 2.45rem;
   }
 
+  .signUpPageButton {
+    width: 80%;
+  }
+
+  .uploadAndSignOutButtons label {
+    font-size: 1.5rem;
+  }
+
+  .profileImage label {
+    width: 12rem;
+    height: 12rem;
+  }
+
   .uploadAndSignOutButtons label,
-  .signOut {
+  a.signOutLink {
+    height: 3.2rem;
     font-size: 1.5rem;
   }
 }
