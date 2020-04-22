@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "555685fa2d77ba667cf02c4bdda36933",
+    "revision": "cc97c0320307d612aa1760580a46f041",
     "url": "/changmoSungSmileyMagic/index.html"
   },
   {
-    "revision": "d5afb675733983aa54ee",
-    "url": "/changmoSungSmileyMagic/static/css/main.85aa73a6.chunk.css"
+    "revision": "e4bb83beff075faac7ce",
+    "url": "/changmoSungSmileyMagic/static/css/main.feeb1506.chunk.css"
   },
   {
     "revision": "03e0181f5f2f0b81adc2",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/changmoSungSmileyMagic/static/js/2.c0a013b2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d5afb675733983aa54ee",
-    "url": "/changmoSungSmileyMagic/static/js/main.73ff9678.chunk.js"
+    "revision": "e4bb83beff075faac7ce",
+    "url": "/changmoSungSmileyMagic/static/js/main.d11825c7.chunk.js"
   },
   {
     "revision": "cfb4997ff699732fabbe",

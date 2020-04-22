@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/changmoSungSmileyMagic/precache-manifest.68207c439856849152e6411b7e5b6682.js"
+  "/changmoSungSmileyMagic/precache-manifest.53350cc59587568b604e537c07e1aa05.js"
 );
 
 self.addEventListener('message', (event) => {
